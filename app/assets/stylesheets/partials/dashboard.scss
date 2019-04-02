@@ -1,0 +1,101 @@
+#tabs{
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border-bottom: solid 1px #ececec
+}
+
+#row1{
+  margin-top:2rem;
+  #trial{
+    box-shadow: 0 1px 3px 0 #c2d2dd;
+    border-radius:10px;
+    width:40rem;
+    height:20rem;
+    margin:10px;
+  }
+  #account{
+    border-radius:10px;
+    box-shadow: 0 1px 3px 0 #c2d2dd;
+    width:40rem;
+    height:20rem;
+    margin:10px;
+  }
+  #manage{
+    border-radius:10px;
+    box-shadow: 0 1px 3px 0 #c2d2dd;
+    width:40rem;
+    height:20rem;
+    margin:10px;
+  }
+  #salesforce{
+    border-radius:10px;
+    box-shadow: 0 1px 3px 0 #c2d2dd;
+    width:40rem;
+    height:20rem;
+    margin:10px;
+
+    #title{
+      margin:auto;
+    }
+  }
+}
+#billing{
+  border-radius:10px;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  height:30rem;
+  margin:10px;
+  width:166rem;
+  margin-bottom:25px;
+}
+#pro{
+  border-radius:10px;
+  width:88rem;
+  margin-left:10px;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  margin-right:20px;
+  margin-bottom:20px;
+  height:20rem;
+
+
+}
+#notes{
+  border-radius:10px;
+  width:38rem;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  margin-right:20px;
+  height:20rem;
+  margin-bottom:20px;
+}
+#actions{
+  border-radius:10px;
+  width:36rem;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  height:20rem;
+  margin-bottom:20px;
+}
+
+h3{
+  margin:auto;
+  text-align: center;
+  color: #444444;
+  font-size: 16px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+p{
+  margin-top:2rem;
+}
+
+h2{
+  padding-bottom:2rem;
+}
+#client-btn-row{
+  margin-right:1rem;
+
+  #client-btn{
+    color:white;
+    background-color:#50d3be;
+    border-color: #50d3be
+  }
+}
