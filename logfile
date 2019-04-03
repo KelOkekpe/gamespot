@@ -1,0 +1,8 @@
+2019-04-03 16:09:50.115 EDT [31550] LOG:  listening on IPv6 address "::1", port 5432
+2019-04-03 16:09:50.115 EDT [31550] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-04-03 16:09:50.116 EDT [31550] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-04-03 16:09:50.128 EDT [31551] LOG:  database system was shut down at 2019-04-03 16:09:20 EDT
+2019-04-03 16:09:50.132 EDT [31550] LOG:  database system is ready to accept connections
+2019-04-03 16:10:06.922 EDT [31574] FATAL:  database "gamespot_development" does not exist
+2019-04-03 16:10:10.260 EDT [31575] FATAL:  database "gamespot_development" does not exist
+2019-04-03 16:10:13.341 EDT [31576] FATAL:  database "gamespot_development" does not exist
