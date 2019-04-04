@@ -27,5 +27,12 @@ body {
 
 .navbar-right{
   margin-top: .75rem;
-  margin-right:5rem;
+  margin-right:.05rem;
+
+}
+
+.btn-default{
+  margin-left: 1rem;
+  background: $callrailblue;
+  color: white;
 }
