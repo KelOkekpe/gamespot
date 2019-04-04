@@ -1,0 +1,52 @@
+.background{
+  background-color: #2894D1;
+}
+#form-container{
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  border-radius:10px;
+  margin-top: 10rem;
+  width: 40rem;
+  padding-left:1rem;
+  padding-right:1rem;
+  padding-bottom: 3rem;
+  padding-top:3rem;
+
+}
+
+#user_email{
+  width: 28rem;
+}
+
+#user_password{
+  width: 28rem;
+}
+
+.login-button{
+  color:white;
+  background-color: #2894D1;
+  width: 10rem;
+}
+
+h1{
+  text-align: center;
+}
+
+#reg-box{
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  border-radius:10px;
+  margin-top: 10rem;
+  width: 40rem;
+  padding:5rem;
+
+  h3{
+    margin:0rem;
+  }
+
+  #signup{
+    margin-top:3rem;
+    margin-left:10rem;
+    color:white;
+    background-color: #2894D1;
+    width: 10rem;
+  }
+}

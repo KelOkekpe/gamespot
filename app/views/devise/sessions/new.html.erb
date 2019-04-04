@@ -1,7 +1,7 @@
-<div class="container">
+
+<div class="container" id="form-container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h2 class="text-center">Log in</h2>
+    <div class="col-sm-6 col-sm-offset-1">
 
       <%= bootstrap_form_for(resource,
                              as: resource_name,
@@ -18,11 +18,14 @@
                                 placeholder: 'password' %>
 
 
-        <% if devise_mapping.rememberable? -%>
-           <%= f.check_box :remember_me %>
-        <% end -%>
 
-         <%= f.submit "Log in", class: 'form-control login-button' %>
+          
+           <%= f.submit "Sign in", class: 'form-control login-button' %>
+
+           <% if devise_mapping.rememberable? -%>
+              <%= f.check_box :remember_me %>
+           <% end -%>
+
       <% end %>
 
     </div>
