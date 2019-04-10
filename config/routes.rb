@@ -13,5 +13,10 @@ Rails.application.routes.draw do
     get 'signup', to: 'devise/registrations#new'
   end
 
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#create'
+  end
+
+  
   # devise_for :users, :controllers => {:registrations => "registrations"}
 end

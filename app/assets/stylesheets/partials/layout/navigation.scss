@@ -1,7 +1,57 @@
+
+.pc-menu {
+  margin-right: 10px;
+}
+
+.mobile-menu {
+  i {
+    color: white;
+  }
+  ul {
+    padding: 0px;
+  }
+  a {
+    display: block;
+    padding: 10px 0px 10px 25px !important;
+  }
+  a:hover {
+    background: white !important;
+    color: black !important;
+    i {
+      color: black;
+    }
+  }
+}
+
+.icon-bar {
+  background-color: white !important;
+}
+
+.active a {
+  background: $navbarColor !important;
+  border-bottom: solid 5px white;
+}
+
+.dropdown-toggle, .dropdown-menu {
+  background: $navbarColor !important;
+  border: none;
+}
+
+.dropdown-menu a:hover {
+  color: black !important;
+  background: white !important;
+}
+
+
 nav {
+  .col-sm-5, .col-sm-7 {
+    padding: 0;
+  }
   .navbar-header {
     width: 100%;
+
     button, .navbar-brand {
+
       transition: opacity 0.15s;
     }
     button {
@@ -19,20 +69,4 @@ nav {
   a {
     color: white !important;
   }
-}
-
-body {
- margin-top: 50px;
-}
-
-.navbar-right{
-  margin-top: .75rem;
-  margin-right:.05rem;
-
-}
-
-.btn-default{
-  margin-left: 1rem;
-  background: $callrailblue;
-  color: white;
 }
