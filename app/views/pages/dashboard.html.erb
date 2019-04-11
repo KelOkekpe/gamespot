@@ -1,1 +1,7 @@
-<%= render 'layouts/dashboard_layout' %>
+<% if user_signed_in? %>
+  <%= render 'layouts/dashboard_layout' %>
+<% else %>
+  <h1 style="text-align:center; padding-top:30rem;"> You must <%= link_to 'Sign In', new_user_session_path,
+    :id => "client-btn", class: 'btn btn-primary' %> if you don't have an account <%= link_to 'Register here',
+     new_user_registration_path, :id => "client-btn", class: 'btn btn-primary' %> </h1>
+<% end # if user is signed it %>
