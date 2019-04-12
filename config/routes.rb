@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/pages/dashboard', to: 'pages#dashboard', as: 'dashboard'
 
+  get '/pages/main_feed', to: 'pages#main_feed', as: 'main_feed'
+
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
   end
@@ -17,6 +19,14 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#create'
   end
 
-  
-  # devise_for :users, :controllers => {:registrations => "registrations"}
+
+  resources :posts do
+    collection do
+      get 'sports'
+      get 'games'
+      get 'music'
+    end
+  end
+
+
 end
