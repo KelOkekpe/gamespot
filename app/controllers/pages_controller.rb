@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def main_feed
-    @posts = Post.limit(5)
+    @posts = Post.limit(16)
   end
 
 end
