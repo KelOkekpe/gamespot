@@ -83,3 +83,6 @@ production:
   database: gamespot_production
   username: gamespot
   password: <%= ENV['GAMESPOT_DATABASE_PASSWORD'] %>
+
+
+host: localhost
