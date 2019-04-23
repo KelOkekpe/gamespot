@@ -12,4 +12,7 @@ class PagesController < ApplicationController
     @posts = Post.limit(16)
   end
 
+  def new_post
+    
+  end
 end

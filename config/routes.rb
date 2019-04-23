@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/pages/main_feed', to: 'pages#main_feed', as: 'main_feed'
 
+  get '/layouts/new_post', to: 'pages#new_post', as: 'new_post'
+
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
   end
