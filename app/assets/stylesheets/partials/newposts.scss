@@ -1,11 +1,7 @@
-#new-post-container{
-  box-shadow: 0 1px 3px 0 #c2d2dd;
-  border-radius:10px;
-  width:100rem;
 
-}
 
 #newpost{
+  padding-top:10rem;
   text-align: center;
 }
 
@@ -13,12 +9,38 @@
   padding-top:5rem;
 }
 
-label{
+#titleinput{
   margin-left:25%;
   padding-bottom:5px;
 }
 
-.form-control{
+#subjectinput{
+  margin-left:25%;
+  padding-bottom:5px;
+}
+
+#bodyinput{
+  margin-left:25%;
+  padding-bottom:5px;
+}
+
+#titletext{
   width:50%;
   margin: 0 auto;
+}
+
+
+#subjecttext{
+  width:50%;
+  margin: 0 auto;
+}
+
+
+#bodytext{
+  width:50%;
+  margin: 0 auto;
+}
+
+#newpostsubmit{
+  margin-left: 50%;
 }

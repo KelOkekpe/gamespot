@@ -2,14 +2,12 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-end
 
-class User < ApplicationRecord
+    scope :by_category, -> (branch, category_name) do
+    joins(:category).where(categories: {name: category_name, branch: branch})
+  end
 
- has_many :posts, dependent: :destroy
-end
-
-class Category < ApplicationRecord
- has_many :posts
-
+  scope :by_branch, -> (branch) do
+    joins(:category).where(categories: {branch: branch})
+  end
 end

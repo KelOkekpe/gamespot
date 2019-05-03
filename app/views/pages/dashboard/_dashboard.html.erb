@@ -23,8 +23,27 @@
 
       <div class="row" id="row1">
         <div class="col-sm-3"id="trial">
-          <h3>Trial</h3>
+          <b><h1 style='text-align:center' id='daysleft'><%= current_user.days_left %> Days Left</h1></b>
+          <p style='margin-left: 11rem' id ='endson'>Trial ends on <%= current_user.trial_end_date.strftime("%B %d") %>.</p>
+
+        <div class="row" id='icons'>
+
+          <div class="col-sm-4">
+            <%= button_to extend_trial_path, id:'renew', method: :put do %>
+              <i class="far fa-clock fa-lg"></i>
+            <% end %>
+          </div>
+
+          <div class="col-sm-4">
+            <i class="fas fa-pause  fa-lg" id='pause'></i>
+          </div>
+
+          <div class="col-sm-4">
+            <i class="far fa-check-circle fa-lg" id='check'></i>
+          </div>
+
         </div>
+      </div>
 
         <div class="col-sm-3"id="account">
           <h3>Account</h3>

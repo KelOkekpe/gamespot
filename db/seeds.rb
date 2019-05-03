@@ -1,11 +1,13 @@
 def seed_users
+  created_at = Time.current
   user_id = 0
   10.times do
     User.create(
-      name: "test#{user_id}",
-      email: "test#{user_id}@test.com",
+      name: "User#{user_id}",
+      email: "User#{user_id}@test.com",
       password: '123456',
-      password_confirmation: '123456'
+      password_confirmation: '123456',
+      trial_end_date: created_at + 7.days
     )
     user_id = user_id + 1
   end
@@ -31,19 +33,23 @@ def seed_categories
   end
 end
 
+
 def seed_posts
   categories = Category.all
+  branch =
 
   categories.each do |category|
     5.times do
       Post.create(
-        title: Faker::Lorem.sentences[0],
+        title: "Category: #{category.branch}",
         content: Faker::Lorem.sentences[0],
         user_id: rand(1..9),
         category_id: category.id
       )
     end
   end
+
+
 end
 
 seed_users

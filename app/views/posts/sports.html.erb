@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div id="side-menu"  class="col-sm-3">
+      <%= render 'pages/index/side_nav/no_login_required_links' %>
+    </div><!-- side-menu -->
+    <div id="side-menu"  class="col-sm-9 .offset-sm-3">
+      <%= render @posts %>
+    </div><!-- side-menu -->
+  </div>
+</div>

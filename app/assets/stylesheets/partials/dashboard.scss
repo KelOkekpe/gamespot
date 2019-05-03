@@ -8,6 +8,8 @@ p{
   border-bottom: solid 1px #ececec
 }
 
+
+
 #row1{
   margin-top:2rem;
   #trial{
@@ -17,6 +19,26 @@ p{
     width:40rem;
     height:20rem;
     margin:10px;
+
+    #daysleft{
+      font-size: 3rem;
+      color:#de3e8e;
+    }
+    #endson{
+      font-size:15px;
+      color:#777777;
+    }
+    #icons{
+      padding-top:10px;
+      margin:auto;
+      width: 166px;
+      height: 38px;
+
+      #renew{
+        border: hidden;
+      }
+    }
+
   }
   #account{
     background-color: white;
