@@ -21,7 +21,7 @@ p{
     margin:10px;
 
     #daysleft{
-      font-size: 3rem;
+      font-size: 4rem;
       color:#de3e8e;
     }
     #endson{
@@ -36,6 +36,15 @@ p{
 
       #renew{
         border: hidden;
+        padding:0px;
+      }
+      #pause{
+        border:hidden;
+        padding:0px;
+      }
+      #unpause{
+        border:hidden;
+        padding:0px;
       }
     }
 
@@ -47,14 +56,22 @@ p{
     width:40rem;
     height:20rem;
     margin:10px;
+
+    #user-name{
+      font-size:4rem;
+    }
   }
-  #manage{
+  #posts{
     background-color: white;
     border-radius:10px;
     box-shadow: 0 1px 3px 0 #c2d2dd;
     width:40rem;
     height:20rem;
     margin:10px;
+    #user-posts{
+      font-size: 4rem;
+      color:#de3e8e;
+    }
   }
   #salesforce{
     background-color: white;

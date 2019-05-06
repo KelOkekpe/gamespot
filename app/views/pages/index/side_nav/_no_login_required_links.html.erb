@@ -1,17 +1,21 @@
-<li id="sports">
-  <%= link_to sports_posts_path do %>
-    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Read about the latest in sports
-  <% end %>
-</li>
+<ul id='side-nav'>
+  <li id="sports">
+    <%= link_to sports_posts_path do %>
+      <i class="fas fa-basketball-ball"></i> Read about the latest in sports
+    <% end %>
+  </li>
 
-<li id="games">
-  <%= link_to games_posts_path do %>
-    <i class="fa fa-graduation-cap" aria-hidden="true"></i> Read up on your favorite video games
-  <% end %>
-</li>
+  <br>
+  <li id="games">
+    <%= link_to games_posts_path do %>
+      <i class="fas fa-gamepad"></i> Read up on your favorite video games
+    <% end %>
+  </li>
 
-<li id="music">
-  <%= link_to music_posts_path do %>
-    <i class="fa fa-users" aria-hidden="true"></i> Check out the hottest artists
-  <% end %>
-</li>
+  <br>
+  <li id="music">
+    <%= link_to music_posts_path do %>
+      <i class="fas fa-music"></i> Check out the hottest artists
+    <% end %>
+  </li>
+</ul>

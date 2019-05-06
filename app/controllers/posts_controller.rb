@@ -14,6 +14,9 @@ class PostsController < ApplicationController
     @posts = Post.by_branch('music').limit(8)
   end
 
+  def show
+    @posts = current_user.posts
+  end
 
   def new
     @branch = params[:branch]

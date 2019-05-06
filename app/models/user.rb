@@ -7,11 +7,14 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-
   def days_left
-    days_left = (trial_end_date - Time.current) / 86400
-    days_left += 1
-    days_left.to_i
+    if trial_paused 
+      days_left = 'Trial Paused'
+    else
+      days_left = (trial_end_date - Time.current) / 86400
+      days_left += 1
+      days_left.to_i
+    end
   end
 
 
