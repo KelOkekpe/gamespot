@@ -3,15 +3,15 @@ class PostsController < ApplicationController
   before_action :redirect_if_not_signed_in, only: [:new]
 
   def sports
-    @posts = Post.by_branch('sports').limit(8)
+    @posts = Post.by_branch('sports').limit(8).order('created_at DESC')
   end
 
   def games
-    @posts = Post.by_branch('games').limit(8)
+    @posts = Post.by_branch('games').limit(8).order('created_at DESC')
   end
 
   def music
-    @posts = Post.by_branch('music').limit(8)
+    @posts = Post.by_branch('music').limit(8).order('created_at DESC')
   end
 
   def show
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :title, :category_id)
-                         .merge(user_id: current_user.id)
+                         .merge(user_id: current_user.id) unless !user_signed_in?
   end
 
 end

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def homepage
-    @posts = Post.limit(4)
+    @posts = Post.offset(rand(Post.count)).limit(4) #this shows 4 random posts
   end
 
   def dashboard

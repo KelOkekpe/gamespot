@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_204858) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2019-05-12 15:27:06"
+    t.datetime "trial_end_date", default: "2019-05-13 19:16:20"
     t.boolean "trial_paused", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
