@@ -10,17 +10,21 @@ Rails.application.routes.draw do
   # get route to dashboard page
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
 
-  put 'extend_trial', to: 'pages#extend_trial', as: 'extend_trial'
 
+  #Trial card routes
+  put 'extend_trial', to: 'pages#extend_trial', as: 'extend_trial'
   put 'pause_trial', to: 'pages#pause_trial', as: 'pause_trial'
   put 'unpause_trial', to: 'pages#unpause_trial', as: 'unpause_trial'
+
 
   # get route to main_feed posts page
   get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
   # get route to new posts page
   get 'new_post', to: 'pages#new_post', as: 'new_post'
-  post 'create', to: 'post#create', as: 'create_post' 
+  post 'create', to: 'post#create', as: 'create_post'
 
+  #user routes
+  get 'user_table', to: 'pages#user_table', as: 'user_table'
 
   #Devise routes for logging in, registrations
   devise_scope :user do

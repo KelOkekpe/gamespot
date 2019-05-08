@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_204858) do
+ActiveRecord::Schema.define(version: 2019_05_08_152230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2019_05_03_204858) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "branch"
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.string "season"
+    t.string "episode"
+    t.string "character"
+    t.string "line"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -40,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_204858) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2019-05-13 19:16:20"
+    t.datetime "trial_end_date", default: "2019-05-14 14:01:06"
     t.boolean "trial_paused", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

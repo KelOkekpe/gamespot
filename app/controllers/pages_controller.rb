@@ -12,6 +12,8 @@ class PagesController < ApplicationController
 
   end
 
+
+  #Trial Card Controllers########
   def extend_trial
     @user = current_user
     @user.update(trial_end_date: Date.today + 20.days)
@@ -35,7 +37,12 @@ class PagesController < ApplicationController
     flash[:success] = "Trial successfully updated"
     redirect_to dashboard_path
   end
+  ########################
 
+  def user_table
+    @users = User.where(:trial_paused => false)
+    
+  end
 
 
 

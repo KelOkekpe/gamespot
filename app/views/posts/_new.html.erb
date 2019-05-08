@@ -1,22 +1,28 @@
-<%= bootstrap_form_for Post.new do |f| %>
-    <%= f.text_field  :title,
-                      maxlength: 100,
-                      placeholder: 'Title',
-                      class: 'form-control',
+<body style="background-color:#337AB7">
+
+<div class='container' style='width: 630px'>
+  <h1 style="color:white; text-align:center; width:574px; padding-bottom:5rem;"> Get creative! Create a post for the world to see! </h1>
+  <%= bootstrap_form_for Post.new do |f| %>
+      <%= f.text_field  :title,
+                        maxlength: 100,
+                        placeholder: 'Title',
+                        class: 'form-control',
+                        required: true,
+                        minlength: 5,
+                        maxlength: 100 %>
+
+      <%= f.collection_select :category_id, Category.all, :id, :name, {:include_blank => true} %>
+      <%= f.hidden_field :branch, :value => @branch %>
+      <%= f.text_area :content,
+                      rows: 6,
                       required: true,
-                      minlength: 5,
-                      maxlength: 100 %>
-
-    <%= f.collection_select :category_id, Category.all, :id, :name, {:include_blank => true} %>
-    <%= f.hidden_field :branch, :value => @branch %>
-    <%= f.text_area :content,
-                    rows: 6,
-                    required: true,
-                    minlength: 20,
-                    maxlength: 1000,
-                    placeholder: 'Describe what you are looking for. E.g. specific interests, expertise level, etc.',
-                    class: 'form-control' %>
+                      minlength: 20,
+                      maxlength: 1000,
+                      placeholder: 'Describe what you are looking for. E.g. specific interests, expertise level, etc.',
+                      class: 'form-control' %>
 
 
-    <%= f.submit "Create a post", class: 'form-control' %>
-<% end %>
+      <%= f.submit "Create a post", class: 'form-control' %>
+  <% end %>
+</div>
+</body>
