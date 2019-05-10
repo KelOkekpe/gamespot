@@ -41,7 +41,6 @@ class PagesController < ApplicationController
 
   def user_table
     @users = User.where(:trial_paused => false)
-    
   end
 
 
