@@ -14,6 +14,13 @@ class PostsController < ApplicationController
     @posts = Post.by_branch('music').limit(8).order('created_at DESC')
   end
 
+  def modal
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def show
     @posts = current_user.posts
   end
