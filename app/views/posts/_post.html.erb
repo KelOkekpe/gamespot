@@ -10,8 +10,9 @@
           <div class="posted-by">Posted by <%= post.user.name %></div>
           <h3><%= post.category.name %></h3>
           <p><%= post.content %></p>
-          <%= link_to "I'm interested", post_path(post.id), class:button_to  %>
+          <%= link_to "I'm interested", post_path(post), class:button_to, remote: true  %>
         </div>
       </div>
     </div><!-- card -->
   </div><!-- col-sm-3 -->
+  <div id='post-content'></div>

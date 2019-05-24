@@ -1,3 +1,12 @@
+#wrapper{
+  margin:0;
+  padding-right:250px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+
+}
+
 #main-content {
 
   background: white;
@@ -12,18 +21,15 @@
 
 #side-nav{
   padding-top:10%;
+  position:fixed;
+  padding-top:20px;
+  }
 
-}
-#home-side-menu{
+#home-side-menu, #side-menu{
   border-radius:5px;
-  background-color: #d2d5db;
-  height:885px;
-}
-#side-menu{
-  border-radius:5px;
-  background-color: #d2d5db;
-  height:1750px;
-}
+
+
+  }
 
   #links-list {
     margin-top: 20px;

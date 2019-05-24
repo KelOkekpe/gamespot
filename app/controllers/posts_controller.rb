@@ -2,6 +2,10 @@ class PostsController < ApplicationController
 
   before_action :redirect_if_not_signed_in, only: [:new]
 
+  def index
+    @posts = current_user.posts
+  end
+
   def sports
     @posts = Post.by_branch('sports').limit(8).order('created_at DESC')
   end
@@ -14,15 +18,12 @@ class PostsController < ApplicationController
     @posts = Post.by_branch('music').limit(8).order('created_at DESC')
   end
 
-  def modal
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
 
   def show
-    @posts = current_user.posts
+    @post = Post.find(params[:id])
+      respond_to do |format|
+        format.js
+      end
   end
 
   def new
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to dashboard_path(@post)
     else
       redirect_to root_path
     end

@@ -11,13 +11,13 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
 
 
+
   #Trial card routes
   put 'extend_trial', to: 'pages#extend_trial', as: 'extend_trial'
   put 'pause_trial', to: 'pages#pause_trial', as: 'pause_trial'
   put 'unpause_trial', to: 'pages#unpause_trial', as: 'unpause_trial'
 
-  #route for popup post modal
-  get "posts/modal", to: 'posts#modal', as: 'modal'
+
 
   # get route to main_feed posts page
   get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
