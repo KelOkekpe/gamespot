@@ -21,7 +21,18 @@ p{
     margin:10px;
 
     #daysleft{
-      font-size: 4rem;
+      font-size: 3rem;
+      color:#de3e8e;
+    }
+    .fa-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      color:#dfdfdf;
+    }
+
+    #trial-suspended{
+      text-align:center;
+      font-size: 3rem;
       color:#de3e8e;
     }
     #endson{
@@ -35,14 +46,35 @@ p{
       height: 38px;
 
       #renew{
+        color:black;
         border: hidden;
         padding:0px;
       }
       #pause{
+        color:black;
         border:hidden;
         padding:0px;
       }
       #unpause{
+        color:black;
+        border:hidden;
+        padding:0px;
+      }
+
+      #check{
+        color:black;
+        border:hidden;
+        padding:0px;
+      }
+
+      #activate{
+        color:black;
+        border:hidden;
+        padding:0px;
+      }
+
+      #suspend{
+        color:black;
         border:hidden;
         padding:0px;
       }

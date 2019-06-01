@@ -2,12 +2,21 @@
 
   <div class="row" id="parent">
     <p>Parent Account</p>
+  <div class='row'>
+    <div style='margin-left:3rem;' id='<%=@user.state%>'>
+      <%= @user.state %>
+    </div>
+  </div>
+
+
     <div class="col-sm-11">
       <h2>Marketing Moguls</h2>
     </div>
+
     <div class="col-sm-1" id="client-btn-row">
       <%= link_to 'Client View', root_path, :id => "client-btn", class: 'btn btn-primary' %>
     </div>
+
   </div>
 
   <div class="row" id="tabs">
@@ -22,6 +31,7 @@
 
 
       <div class="row" id="row1">
+
         <%= render trial_card_partial_path %> <%#this is a helper method that shows x days left or trial paused depending on user trial_paused vlaue %>
 
         <div class="col-sm-3"id="account">

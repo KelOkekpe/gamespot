@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   put 'extend_trial', to: 'pages#extend_trial', as: 'extend_trial'
   put 'pause_trial', to: 'pages#pause_trial', as: 'pause_trial'
   put 'unpause_trial', to: 'pages#unpause_trial', as: 'unpause_trial'
+  put 'suspend', to:'pages#suspend', as:'suspend'
+  put 'activate', to:'pages#activate', as:'activate'
 
 
 
@@ -28,6 +30,8 @@ Rails.application.routes.draw do
 
   #user routes
   get 'user_table', to: 'pages#user_table', as: 'user_table'
+
+  get 'show_state', to: 'users#show_state', as: 'show_state'
 
   #Devise routes for logging in, registrations
   devise_scope :user do

@@ -1,0 +1,28 @@
+<div class="col-sm-3"id="trial">
+  <b><h1 style='text-align:center' id='trial-suspended'>Account Suspended</h1></b>
+
+
+  <div class="row" id='icons'>
+
+    <div class="col-sm-3">
+      <%= button_to extend_trial_path, id:'renew', method: :put do %>
+        <i class="far fa-clock fa-lg fa-disabled"></i>
+      <% end %>
+    </div>
+
+    <div class="col-sm-3">
+        <i class="fas fa-pause  fa-lg fa-disabled" id='pause'></i>
+    </div>
+
+    <div class="col-sm-3">
+      <%= button_to activate_path, id:'activate', method: :put do %>
+        <i class="far fa-check-circle fa-lg" id='check'></i>
+      <% end %>
+    </div>
+
+    <div class="col-sm-3">
+        <i class="fas fa-ban fa-lg fa-disabled" id='suspend'></i>
+    </div>
+
+  </div>
+</div>
