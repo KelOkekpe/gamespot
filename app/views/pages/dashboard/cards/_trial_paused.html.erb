@@ -1,23 +1,29 @@
 <div class="col-sm-3"id="trial">
-  <b><h1 style='text-align:center' id='daysleft'><%= current_user.days_left %></h1></b>
+  <b><h1 style='text-align:center width:385px' id='daysleft'><%= current_user.days_left %></h1></b>
   <br><br>
 
 <div class="row" id='icons'>
 
-  <div class="col-sm-4">
-    <%= button_to extend_trial_path, id:'renew', method: :put do %>
-      <i class="far fa-clock fa-lg"></i>
-    <% end %>
+  <div class="col-sm-3">
+      <i class="far fa-clock fa-lg fa-disabled"></i>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <%= button_to unpause_trial_path, id:'unpause', method: :put do %>
       <i class="fas fa-play  fa-lg" id='play'></i>
     <% end %>
   </div>
 
-  <div class="col-sm-4">
-    <i class="far fa-check-circle fa-lg" id='check'></i>
+  <div class="col-sm-3">
+    <%= button_to activate_path, id:'activate', method: :put do %>
+      <i class="far fa-check-circle fa-lg" id='check'></i>
+      <% end %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= button_to suspend_path, id:'suspend', method: :put do %>
+      <i class="fas fa-ban fa-lg" id='suspend'></i>
+    <% end %>
   </div>
 
 </div>
