@@ -19,7 +19,6 @@ class User < ApplicationRecord
       days_left += 1
       days_left.to_i
     end
-
   end
 
 

@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     @user = current_user
     update = @user.update(trial_end_date: Date.today + 20.days)
 
-    flash[:alert] = "Trial successfully updated"
+    flash[:alert] = "Trial Extended"
     redirect_to dashboard_path
 
   end
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
     @user = current_user
     @user.update(trial_end_date: nil, trial_paused: true, state:'paused')
 
-    flash[:success] = "Trial successfully updated"
+    flash[:success] = "Trial Paused"
     redirect_to dashboard_path
   end
 
@@ -35,7 +35,7 @@ class PagesController < ApplicationController
     @user = current_user
     @user.update(trial_end_date:Date.today + 14.days, trial_paused: false, state:'trial')
 
-    flash[:success] = "Trial successfully updated"
+    flash[:success] = "Trial Unpaused"
     redirect_to dashboard_path
   end
 
