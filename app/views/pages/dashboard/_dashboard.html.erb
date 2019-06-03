@@ -21,8 +21,8 @@
 
   <div class="row" id="tabs">
     <div class="col-sm-1"> <%= link_to 'Overview', main_feed_path %> </div>
-    <div class="col-sm-1"> <%= link_to 'Companies', root_path %> </div>
-    <div class="col-sm-1"> <%= link_to 'Users', root_path %> </div>
+    <div class="col-sm-1"> <%= link_to 'Companies', dashboard_path %> </div>
+    <div class="col-sm-1"> <%= link_to 'Users', user_table_path %> </div>
     <div class="col-sm-1"> <%= link_to 'Invoices', root_path %> </div>
     <div class="col-sm-1"> <%= link_to 'Alerts', root_path %> </div>
     <div class="col-sm-2"> <%= link_to 'Notes', root_path %> </div>
@@ -35,7 +35,7 @@
         <%= render trial_card_partial_path %> <%#this is a helper method that shows x days left or trial paused depending on user trial_paused vlaue %>
 
         <div class="col-sm-3"id="account">
-          <h1 style='text-align:center' id='user-name'><%= current_user.name %></h1>
+          <h1 style='text-align:center' id='user-name'><%= current_user.email %></h1>
           <h3><b>Member Since</b> <%= current_user.created_at.strftime("%B %d") %></h3>
         </div>
 

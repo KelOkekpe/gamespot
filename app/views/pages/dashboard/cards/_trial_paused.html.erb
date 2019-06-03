@@ -1,5 +1,5 @@
 <div class="col-sm-3"id="trial">
-  <b><h1 style='text-align:center width:385px' id='daysleft'><%= current_user.days_left %></h1></b>
+  <b><h1 style='text-align:center width:385px' id='daysleft'><%= UserDecorator.new(@user).days_left %></h1></b>
   <br><br>
 
 <div class="row" id='icons'>
