@@ -18,7 +18,10 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+job_type :update, '/bin/update :task :user_state'
 
 every 1.day, at:'2:59 pm' do
   runner 'User.update_state'
+  rake "update_user_state"
+  command "/bin/update_user_state"
 end
