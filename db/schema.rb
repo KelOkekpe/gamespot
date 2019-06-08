@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_192805) do
+ActiveRecord::Schema.define(version: 2019_06_08_191349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.string "title"
+    t.bigint "host_id"
+    t.bigint "cleaner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cleaner_id"], name: "index_bookings_on_cleaner_id"
+    t.index ["host_id"], name: "index_bookings_on_host_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -49,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_05_31_192805) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2019-06-08 17:29:43"
+    t.datetime "trial_end_date", default: "2019-06-15 23:23:07"
     t.boolean "trial_paused", default: false
     t.string "state", default: "trial"
     t.index ["email"], name: "index_users_on_email", unique: true
