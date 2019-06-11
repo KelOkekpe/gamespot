@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_191349) do
+ActiveRecord::Schema.define(version: 2019_06_11_061506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.string "title"
+    t.string "notes"
     t.bigint "host_id"
     t.bigint "cleaner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "pending"
     t.index ["cleaner_id"], name: "index_bookings_on_cleaner_id"
     t.index ["host_id"], name: "index_bookings_on_host_id"
   end
@@ -59,9 +60,10 @@ ActiveRecord::Schema.define(version: 2019_06_08_191349) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2019-06-15 23:23:07"
+    t.datetime "trial_end_date", default: "2019-06-16 04:11:38"
     t.boolean "trial_paused", default: false
     t.string "state", default: "trial"
+    t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

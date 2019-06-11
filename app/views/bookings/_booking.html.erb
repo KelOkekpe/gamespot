@@ -1,0 +1,15 @@
+<div class="col-sm-3 single-post-card">
+  <div class="card">
+    <div class="card-block">
+      <h4 class="post-text">
+        <div id='post-title'>
+        <%= truncate(booking.notes, :length => 60) %>
+        </div>
+      </h4>
+      <div class="post-content">
+        <div class="posted-by">Host <%= booking.host.name %></div>
+        <p><%= booking.notes %></p>
+      </div>
+    </div>
+  </div><!-- card -->
+</div><!-- col-sm-3 -->

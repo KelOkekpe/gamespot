@@ -10,6 +10,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    @total_bookings = Booking.where(cleaner_id:@user.id).count
+    @pending_bookings = Booking.where(cleaner_id:@user.id, status:'pending').count
   end
 
 
@@ -60,10 +62,12 @@ class PagesController < ApplicationController
   ########################
 
   def user_table
-    @users = User.where(:trial_paused => false)
+    @users = User.where(:user_type => 'cleaner')
   end
 
+  def user_details
 
+  end
 
   def main_feed
     @posts = Post.limit(16)

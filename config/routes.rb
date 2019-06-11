@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   put 'activate', to:'pages#activate', as:'activate'
 
 
+  # post 'create_booking', to:'bookings#create', as: 'create_booking'
+  get 'booking', to: 'bookings#index', as: 'booking'
+  get 'request_message', to:'bookings#request_message', as:'request_message'
+  get 'booking_form', to: 'bookings#show', as: 'booking_details'
+  post 'booking_form', to: 'bookings#create', as:'post_booking'
+
 
   # get route to main_feed posts page
   get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
@@ -30,6 +36,7 @@ Rails.application.routes.draw do
 
   #user routes
   get 'user_table', to: 'pages#user_table', as: 'user_table'
+  get 'user_details', to: 'pages#user_details', as: 'user_details'
 
   get 'show_state', to: 'users#show_state', as: 'show_state'
 
