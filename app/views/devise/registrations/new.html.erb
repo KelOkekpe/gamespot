@@ -23,7 +23,15 @@
     <%= f.password_field :password_confirmation,
                          placeholder: 'password confirmation',
                          class: 'form-control' %>
+
+    <% host_or_cleaner = User::TYPES.map {|x| x}%>
+    <%= f.collection_radio_buttons(:user_type, host_or_cleaner, :first, :last) %>
+
+
     <%= f.submit 'Sign up', class: 'btn sign-up-button', :id => "signup" %>
+
+
+
   <% end %>
 
     </div>

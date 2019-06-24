@@ -41,7 +41,7 @@
 
         <div class="col-sm-3"id="posts">
           <h1 style='text-align:center' id='user-posts'><%= @pending_bookings %></h1>
-          <h3 style='text-align:center'><b><%= link_to 'Pending Reservations', booking_path(@total_bookings)%> </b></h3>
+          <h3 style='text-align:center'><b><%= link_to 'Pending Reservations', bookings_path(@pending_bookings)%> </b></h3>
         </div>
 
         <div class="col-sm-3"id="salesforce">

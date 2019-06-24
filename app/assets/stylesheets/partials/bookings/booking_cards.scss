@@ -1,0 +1,31 @@
+#booking-links{
+  font-size:2rem;
+  margin-top:10rem;
+
+}
+#booking-container{
+  margin-top:10rem;
+}
+#booking-card{
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  border-radius:5px;
+  width:25rem;
+  height:20rem;
+  margin:10px;
+
+  #booking-header{
+    background-color:#71e1b1;
+    margin-bottom:2rem;
+  }
+
+  #booking-time{
+    padding-top:2rem;
+    margin-bottom:2rem;
+  }
+
+  #booking-notes{
+    padding-bottom:3rem;
+  }
+
+}

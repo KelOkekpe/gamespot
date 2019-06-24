@@ -1,16 +1,18 @@
-
 <div class = 'container'>
-<h1 style='text-align:center'>Book <%= @booking.host.name %> for a cleaning </h1>
-<%= bootstrap_form_for post_booking_path do |f| %>
+<h1 style='text-align:center'>Book <%= @cleaner.name %> for a cleaning </h1>
+<%= bootstrap_form_for @booking do |f| %>
     <%= f.text_area :notes,
                     rows: 6,
                     minlength: 5,
                     maxlength: 1000,
                     placeholder: 'Leave a note for your cleaner!',
                     class: 'form-control' %>
-    hosts: <%= f.collection_select :host_id, User.where(:user_type=>'host'), :id, :name, {:include_blank => true} %>
-    cleaners: <%= f.collection_select :cleaner_id, User.where(:user_type=>'cleaner'), :id, :name, {:include_blank => true} %>
+
+    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+    <%= f.hidden_field :host_id,    value: @host.id    %>
 
     <%= f.submit "Book Now!", id:'client-btn', class: 'form-control btn btn-primary'  %>
     <% end %>
 </div>
+
+<h1 style='text-align:center;'><%= params %></h1>

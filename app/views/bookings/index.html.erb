@@ -1,8 +1,14 @@
+<div class='row'style='text-align:center'  id='booking-links'>
+  <div class='col-sm-4'><%= link_to 'Pending Reservations', bookings_path(@total_bookings)%></div>
+  <div class='col-sm-4'>Accepted</div>
+  <div class='col-sm-4'>Archived</div>
+</div>
+
+
 <div class="row">
-  <div class='col-sm-3' id='home-side-menu'>
-    <%= render 'pages/index/side_nav' %>
-  </div>
-  <div class='col-sm-9' id='main'>
-    <%= render @total_bookings %>
+  <div class='container' style='text-align:center' id='booking-container'>
+    <div class='col-sm-12 style='text-align:center' id='booking-wrapper'>
+      <%= render @total_bookings %>
+    </div>
   </div>
 </div>

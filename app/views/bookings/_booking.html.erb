@@ -1,15 +1,16 @@
-<div class="col-sm-3 single-post-card">
-  <div class="card">
-    <div class="card-block">
-      <h4 class="post-text">
-        <div id='post-title'>
-        <%= truncate(booking.notes, :length => 60) %>
-        </div>
-      </h4>
-      <div class="post-content">
-        <div class="posted-by">Host <%= booking.host.name %></div>
-        <p><%= booking.notes %></p>
-      </div>
+<div class='card' id='booking-card'>
+  <div id='booking-header'><%= booking.host.name %></div>
+  <div id='booking-body'>
+    <div id='booking-time'>booking id: <%= booking.id %></div>
+    <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+    <div class="col-sm-6" id="client-btn-row">
+      <%= button_to 'Approve', approve_booking_path(id: booking.id), id:'client-btn', class: 'btn btn-primary', method: :put %>
     </div>
-  </div><!-- card -->
-</div><!-- col-sm-3 -->
+    <div class="col-sm-6" id="client-btn-row">
+      <%= button_to 'Deny', deny_booking_path(id: booking.id), id:'client-btn', class: 'btn btn-primary', method: :put %>
+    </div>
+  </div>
+</div>
+
+
+<h1 style='text-align:center;'><%= params %></h1>

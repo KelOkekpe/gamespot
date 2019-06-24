@@ -1,13 +1,14 @@
 def seed_users
   created_at = Time.current
-  user_id = 0
-  10.times do
+  user_id = 1
+  5.times do
     User.create(
       name: "User#{user_id}",
       email: "User#{user_id}@test.com",
       password: '123456',
       password_confirmation: '123456',
-      trial_end_date: created_at + 7.days
+      trial_end_date: created_at + 7.days,
+      user_type: 'cleaner'
     )
     user_id = user_id + 1
   end
