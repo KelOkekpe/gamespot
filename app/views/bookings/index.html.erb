@@ -1,14 +1,8 @@
-<div class='row'style='text-align:center'  id='booking-links'>
-  <div class='col-sm-4'><%= link_to 'Pending Reservations', bookings_path(@total_bookings)%></div>
-  <div class='col-sm-4'>Accepted</div>
-  <div class='col-sm-4'>Archived</div>
-</div>
-
-
+<h1 style='text-align:center'> Reservations </h1>
 <div class="row">
   <div class='container' style='text-align:center' id='booking-container'>
     <div class='col-sm-12 style='text-align:center' id='booking-wrapper'>
-      <%= render @total_bookings %>
+      <%= render @bookings %>
     </div>
   </div>
 </div>

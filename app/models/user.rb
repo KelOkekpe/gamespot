@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :host_bookings, :class_name => 'Booking', :foreign_key => 'host_id'
   has_many :cleaner_bookings, :class_name => 'Booking', :foreign_key => 'cleaner_id'
+  
 
   TYPES=[
     ['host','Host'],

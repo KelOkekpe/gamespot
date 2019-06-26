@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 <body style='background-color:#f5f5f5'>
   <div class='container' id='dashboard-wrapper'>
-    <%= render 'pages/dashboard/dashboard' %>
+    <%= dashboard_helper_path %>
   </div>
 </body>
 <% else %>

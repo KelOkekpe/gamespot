@@ -14,5 +14,13 @@ module PagesHelper
      end
    end
 
+  def dashboard_helper_path
+   @user = current_user
+   if @user.user_type == 'host'
+     render 'pages/dashboard/dashboard'
+    elsif @user.user_type == 'cleaner'
+      render 'pages/dashboard/cleaner_dashboard'
+    end
+  end
 
 end

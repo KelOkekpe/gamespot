@@ -2,15 +2,20 @@ class BookingsController < ApplicationController
 
   def index
     @user = current_user
-    @total_bookings = Booking.where(cleaner_id:@user.id)
-    @pending_bookings = Booking.where(cleaner_id:@user.id, status:'pending')
-    @approved_bookings = Booking.where(cleaner_id:@user.id, status:'approved')
+
+    if @user.user_type == 'host'
+      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
+    else @user.user_type == 'cleaner'
+      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
+    end
   end
+
 
   def show
     @cleaner    = User.find(params[:cleaner_id])
     @host       = current_user
     @booking    = Booking.new
+
   end
 
   def new
@@ -27,7 +32,7 @@ class BookingsController < ApplicationController
         flash[:success] = "Reservation Approved"
         redirect_to dashboard_path
       else
-        flash[:alert] = "Reservation could not be accepted"
+        flash[:error] = "Reservation could not be accepted"
         redirect_to root_path
       end
   end
@@ -39,7 +44,7 @@ class BookingsController < ApplicationController
         flash[:success] = "Reservation Denied"
         redirect_to dashboard_path
       else
-        flash[:alert] = "Reservation could not be denied"
+        flash[:error] = "Reservation could not be denied"
         redirect_to root_path
       end
   end
@@ -57,7 +62,7 @@ class BookingsController < ApplicationController
       flash[:success] = "Booking Created"
       redirect_to request_message_path
     else
-      flash[:alert] = "Booking Failed to Create"
+      flash[:error] = "Booking Failed to Create"
       redirect_to root_path
     end
   end

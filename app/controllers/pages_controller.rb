@@ -10,8 +10,15 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-    @total_bookings = Booking.where(cleaner_id:@user.id).count
-    @pending_bookings = Booking.where(cleaner_id:@user.id, status:'pending').count
+
+    if @user.user_type == 'host'
+      @approved_bookings = Booking.where(host_id:@user.id, status:'approved').count
+      @pending_bookings = Booking.where(host_id:@user.id, status:'pending').count
+    else @user.user_type == 'cleaner'
+      @approved_bookings = Booking.where(cleaner_id:@user.id, status:'approved').count
+      @pending_bookings = Booking.where(cleaner_id:@user.id, status:'pending').count
+    end
+
   end
 
 

@@ -3,14 +3,9 @@
   <div id='booking-body'>
     <div id='booking-time'>booking id: <%= booking.id %></div>
     <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
-    <div class="col-sm-6" id="client-btn-row">
-      <%= button_to 'Approve', approve_booking_path(id: booking.id), id:'client-btn', class: 'btn btn-primary', method: :put %>
-    </div>
-    <div class="col-sm-6" id="client-btn-row">
-      <%= button_to 'Deny', deny_booking_path(id: booking.id), id:'client-btn', class: 'btn btn-primary', method: :put %>
-    </div>
+      <div class='row'>
+        <div class="col-sm-6"><%= button_to 'Approve', approve_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
+        <div class="col-sm-6"><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
+      </div>
   </div>
 </div>
-
-
-<h1 style='text-align:center;'><%= params %></h1>
