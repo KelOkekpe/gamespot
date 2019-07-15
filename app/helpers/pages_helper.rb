@@ -23,4 +23,12 @@ module PagesHelper
     end
   end
 
+  def booking_card_helper
+    if @pending_bookings
+      render 'bookings/booking'
+    else
+      render 'bookings/booking_no_buttons'
+    end
+  end
+
 end

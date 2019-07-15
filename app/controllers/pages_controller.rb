@@ -69,12 +69,14 @@ class PagesController < ApplicationController
   ########################
 
   def user_table
-    @users = User.where(:user_type => 'cleaner')
+    if current_user.user_type == 'host'
+      @users = User.where(:user_type => 'cleaner')
+    else
+      @users = User.where(:user_type=>'host')
+    end
   end
 
-  def user_details
 
-  end
 
   def main_feed
     @posts = Post.limit(16)

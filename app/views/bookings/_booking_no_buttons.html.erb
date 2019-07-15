@@ -1,0 +1,7 @@
+<div class='card' id='booking-card'>
+  <div id='booking-header'><%= booking.host.name %></div>
+  <div id='booking-body'>
+    <div id='booking-time'>booking id: <%= booking.id %></div>
+    <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+  </div>
+</div>

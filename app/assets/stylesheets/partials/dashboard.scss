@@ -26,6 +26,7 @@ p{
     margin:10px;
 
     #daysleft{
+      font-weight:200;
       font-size: 3rem;
       color:#de3e8e;
     }
@@ -36,6 +37,7 @@ p{
     }
 
     #trial-suspended{
+      font-weight:200;
       text-align:center;
       font-size: 3rem;
       color:#de3e8e;
@@ -95,10 +97,11 @@ p{
     margin:10px;
 
     #user-name{
+      font-weight:200;
       font-size:3rem;
     }
   }
-  #posts{
+  #pending-bookings{
     background-color: white;
     border-radius:5px;
     box-shadow: 0 1px 3px 0 #c2d2dd;
@@ -106,11 +109,12 @@ p{
     height:20rem;
     margin:10px;
     #user-posts{
+      font-weight:200;
       font-size: 4rem;
       color:#de3e8e;
     }
   }
-  #salesforce{
+  #approved-bookings{
     background-color: white;
     border-radius:5px;
     box-shadow: 0 1px 3px 0 #c2d2dd;
@@ -119,6 +123,7 @@ p{
     margin:10px;
 
     #total-bookings{
+      font-weight:200;
       font-size: 4rem;
       color:#de3e8e;
     }

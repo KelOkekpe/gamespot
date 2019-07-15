@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     else @user.user_type == 'cleaner'
       @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
     end
+
   end
 
 
@@ -36,6 +37,7 @@ class BookingsController < ApplicationController
         redirect_to root_path
       end
   end
+
 
   def deny
     @booking = Booking.find(params[:id])
