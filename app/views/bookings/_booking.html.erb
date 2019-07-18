@@ -1,11 +1,24 @@
+<% if booking.status=='pending' %>
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
-  <div id='booking-body'>
-    <div id='booking-time'>booking id: <%= booking.id %></div>
-    <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+    <div id='booking-body'>
+      <div id='booking-time'>booking id: <%= booking.id %></div>
+      <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
       <div class='row'>
         <div class="col-sm-6"><%= button_to 'Approve', approve_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
         <div class="col-sm-6"><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
       </div>
   </div>
 </div>
+<% elsif booking.status=='approved' %>
+<div class='card' id='booking-card'>
+  <div id='booking-header'><%= booking.host.name %></div>
+  <div id='booking-body'>
+    <div id='booking-time'>booking id: <%= booking.id %></div>
+    <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+    <div class='row'>
+      <div class="col-sm-12"><%= button_to 'Cancel Reservation', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
+    </div>
+  </div>
+</div>
+<%  end %>

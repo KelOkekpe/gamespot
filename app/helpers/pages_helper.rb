@@ -23,11 +23,13 @@ module PagesHelper
     end
   end
 
-  def booking_card_helper
-    if @pending_bookings
+  def booking_card_helper_path
+    if bookings_path(status: 'pending')
+      render 'bookings/approved_booking'
+    elsif bookings_path(status:'approved')
       render 'bookings/booking'
     else
-      render 'bookings/booking_no_buttons'
+      dashboard_path
     end
   end
 

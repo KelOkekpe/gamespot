@@ -1,14 +1,12 @@
 class BookingsController < ApplicationController
 
-  def index
+  def index #this renders pending bookings
     @user = current_user
-
     if @user.user_type == 'host'
       @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
     else @user.user_type == 'cleaner'
       @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
     end
-
   end
 
 
@@ -26,6 +24,7 @@ class BookingsController < ApplicationController
   end
 
 
+  #BOOKING ACTIONS #######################################################
   def approve
     @booking = Booking.find(params[:id])
     @booking.update(status:'approved')
@@ -51,6 +50,19 @@ class BookingsController < ApplicationController
       end
   end
 
+  def cancel
+    @booking = Booking.find(params[:id])
+    @booking.update(status:'cancelled')
+      if @booking.save
+        flash[:success] = "Reservation Cancelled"
+        redirect_to dashboard_path
+      else
+        flash[:error] = "Reservation could not be cancelled"
+        redirect_to root_path
+      end
+  end
+
+  ###########################################################################
 
   def request_message
   end

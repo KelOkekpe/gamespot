@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'create_booking', to: 'bookings#create', as:'create_booking'
   put 'approve_booking/:id', to:'bookings#approve', as:'approve_booking'
   put 'deny_booking/:id', to:'bookings#deny', as:'deny_booking'
+  put 'cancel_booking/:id', to:'bookings#cancel', as:'cancel_booking'
   # put 'bookings/:id', to:'bookings#index', as:'bookings'
 
 

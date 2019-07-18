@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+  ########################  ########################  ########################  ########################  ########################  ########################
   def index
   end
 
@@ -20,16 +20,15 @@ class PagesController < ApplicationController
     end
 
   end
+   ########################  ########################  ########################  ########################  ########################
 
-
-  #Trial Card Controllers #########
+  #Trial Card Controllers #########  ########################  ########################  ########################
   def extend_trial
     @user = current_user
     update = @user.update(trial_end_date: Date.today + 20.days)
 
     flash[:alert] = "Trial Extended"
     redirect_to dashboard_path
-
   end
 
   def pause_trial
@@ -66,7 +65,7 @@ class PagesController < ApplicationController
   end
 
 
-  ########################
+  ########################  ########################  ########################  ########################
 
   def user_table
     if current_user.user_type == 'host'
