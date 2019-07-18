@@ -1,3 +1,4 @@
+<div class='container' style='width:15rem text-align:center'>
 <table class = "table">
   <thead>
   <tr>
@@ -6,17 +7,21 @@
     <th scope='col'>name</th>
     <th scope='col'>email</th>
     <th scope='col'>created_at</th>
-    <th scope='col'>trial_paused</th>y
+    <th scope='col'>trial_paused</th>
+    <th scope='col'>Request</th>
   </tr>
   <%= count = 1 %>
 <%= @users.each do |user| %>
   <tr>
-    <th scope="row"><%= count %></th>
+    <td><%= count %></td>
     <td><%= user.id %></td>
-    <td><%= user.name %></td>
+    <td><%= link_to user.name, new_booking_path(cleaner_id: user.id, host_id: current_user.id)  %></td>
     <td><%= user.email %></td>
     <td><%= user.created_at %></td>
     <td><%= user.trial_paused %></td>
+    <td><%= link_to 'Book Now!', new_booking_path(cleaner_id: user.id, host_id: current_user.id),
+      :id => "client-btn", class: 'btn btn-primary' %></td>
     <%= count += 1 %>
 <% end %>
 </table>
+</div>

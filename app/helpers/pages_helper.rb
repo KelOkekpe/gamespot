@@ -14,5 +14,21 @@ module PagesHelper
      end
    end
 
+  def dashboard_helper_path
+   @user = current_user
+   if @user.user_type == 'host'
+     render 'pages/dashboard/dashboard'
+    elsif @user.user_type == 'cleaner'
+      render 'pages/dashboard/cleaner_dashboard'
+    end
+  end
+
+  def booking_card_helper
+    if @pending_bookings
+      render 'bookings/booking'
+    else
+      render 'bookings/booking_no_buttons'
+    end
+  end
 
 end

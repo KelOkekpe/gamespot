@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  #Pages
+
   root to: 'pages#index'
-
-  # get route to homepage
   get 'homepage', to: 'pages#homepage', as: 'homepage'
-  # get route to dashboard page
+  get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
-
+  get 'user_table', to: 'pages#user_table', as: 'user_table'
+  get 'user_details', to: 'pages#user_details', as: 'user_details'
+  get 'new_post', to: 'pages#new_post', as: 'new_post'
 
 
   #Trial card routes
@@ -20,18 +20,18 @@ Rails.application.routes.draw do
   put 'activate', to:'pages#activate', as:'activate'
 
 
+  resources :bookings
+  get 'request_message', to:'bookings#request_message', as:'request_message'
+  post 'create_booking', to: 'bookings#create', as:'create_booking'
+  put 'approve_booking/:id', to:'bookings#approve', as:'approve_booking'
+  put 'deny_booking/:id', to:'bookings#deny', as:'deny_booking'
+  # put 'bookings/:id', to:'bookings#index', as:'bookings'
 
-  # get route to main_feed posts page
-  get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
 
-  # get route to new posts page
-  get 'new_post', to: 'pages#new_post', as: 'new_post'
-  post 'create', to: 'post#create', as: 'create_post'
-
-  #user routes
-  get 'user_table', to: 'pages#user_table', as: 'user_table'
 
   get 'show_state', to: 'users#show_state', as: 'show_state'
+  get 'bio', to:'users#bio', as:'bio'
+
 
   #Devise routes for logging in, registrations
   devise_scope :user do
@@ -43,8 +43,6 @@ Rails.application.routes.draw do
   end
 
 
-
-
   resources :posts do
     collection do
       get 'sports'
@@ -52,6 +50,7 @@ Rails.application.routes.draw do
       get 'music'
     end
   end
+  post 'create', to: 'post#create', as: 'create_post'
 
 
 end
