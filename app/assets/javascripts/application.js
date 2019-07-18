@@ -18,3 +18,4 @@
 //= require bootstrap
  //= require bootstrap-sprockets
 //= require bootstrap-modal
+//= require bootstrap-datepicker 

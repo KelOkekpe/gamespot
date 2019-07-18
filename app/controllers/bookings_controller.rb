@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
 
-  def index #this renders pending bookings
+  #The index controller shows a list of different Booking objects
+  def index
     @user = current_user
     if @user.user_type == 'host'
       @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
@@ -71,7 +72,8 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking = Booking.new(notes: booking_params[:notes],
       host_id: booking_params[:host_id],
-      cleaner_id: booking_params[:cleaner_id])
+      cleaner_id: booking_params[:cleaner_id],
+      starts_at: booking_params[:starts_at])
     if @booking.save
       flash[:success] = "Booking Created"
       redirect_to request_message_path
@@ -84,7 +86,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :utf8, :authenticity_token, :commit)
+    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :starts_at, :utf8, :authenticity_token, :commit)
   end
 
 
