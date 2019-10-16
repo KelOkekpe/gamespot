@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_191020) do
+ActiveRecord::Schema.define(version: 2019_07_22_193434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_191020) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2019-07-01 00:15:49"
+    t.datetime "trial_end_date", default: "2019-10-23 14:15:21"
     t.boolean "trial_paused", default: false
     t.string "state", default: "trial"
     t.string "user_type"

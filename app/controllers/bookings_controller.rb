@@ -15,8 +15,8 @@ class BookingsController < ApplicationController
     @cleaner    = User.find(params[:cleaner_id])
     @host       = current_user
     @booking    = Booking.new
-
   end
+
 
   def new
     @cleaner    = User.find(params[:cleaner_id])
