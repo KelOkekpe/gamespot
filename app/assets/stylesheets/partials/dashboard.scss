@@ -3,19 +3,16 @@
   height: 100px;
   position: relative;
 }
-#dashboardimage,
+
 #dashboard-wrapper{
-  position: absolute;
+  position: center;
    width: 100%;
    margin-top:-5rem;
 
 }
 #dashboard-wrapper{
-  margin-top:-2rem;
   width:1110px;
-  height:700px;
-  margin-left:30rem;
-  margin-right:285px;
+  height:8750px;
   z-index:0;
 }
 
@@ -140,11 +137,9 @@ p{
     width:25rem;
     height:20rem;
     margin:10px;
-
-    #user-name{
-      font-weight:200;
-      font-size:3rem;
-    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   #pending-bookings{
     background-color: white;

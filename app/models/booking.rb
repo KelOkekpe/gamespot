@@ -6,7 +6,9 @@ class Booking < ApplicationRecord
   # split_accessor :starts_at
   # split_accessor :ends_at
 
-
+  def start_time
+    self.starts_at
+  end
 
 
 end

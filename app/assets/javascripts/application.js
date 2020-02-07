@@ -20,7 +20,6 @@
 //= require bootstrap-modal
 //= require bootstrap-datepicker
 //= require moment
-//= require fullcalendar
-//= require fullcalendar/locale-all
+
 
 $('#calendar').fullCalendar({});

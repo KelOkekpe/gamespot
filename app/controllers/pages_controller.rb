@@ -19,7 +19,7 @@ class PagesController < ApplicationController
         @pending_bookings = Booking.where(cleaner_id:@user.id, status:'pending').count
       end
     else
-      
+
     end
 
 
@@ -62,7 +62,6 @@ class PagesController < ApplicationController
   def suspend
     @user = current_user
     @user.update(trial_paused:nil, state:'suspended')
-
 
     flash[:success] = "Account Successfully Suspended"
     redirect_to dashboard_path

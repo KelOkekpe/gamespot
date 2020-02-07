@@ -14,7 +14,7 @@
         <%= render trial_card_partial_path %> <%#this is a helper method that shows x days left or trial paused depending on user trial_paused vlaue %>
 
         <div class="col-sm-3"id="account">
-          <h1 style='text-align:center' id='user-name'><%= current_user.email %></h1>
+        <h1 style="text-align:center;font-weight: 200;font-size: 2rem;"><%= current_user.email %></h1>
           <h3><b>Member Since</b> <%= current_user.created_at.strftime("%B %d") %></h3>
           <h3><b>Member Type</b> <%= current_user.user_type %></h3>
         </div>
@@ -36,12 +36,12 @@
           <h3>Host Calendar</h3>
           <div id="calendar">
 
-            <%= month_calendar bookings: @bookings do |date, bookings| %>
+            <%= month_calendar events: Booking.all do |date, bookings| %>
               <%= date %>
 
               <% bookings.each do |booking| %>
                 <div>
-                  <%= booking.start_time %>
+                  <%= booking.starts_at %>
                   <%= booking.id %>
                 </div>
               <% end %>
