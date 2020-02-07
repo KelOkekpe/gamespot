@@ -9,9 +9,7 @@ gem "time_splitter"
 #Datepicker gem for rails forms
 gem 'bootstrap-datepicker-rails'
 
-#Calendar gem
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+
 
 #simplecalendar
 gem "simple_calendar", "~> 2.0"

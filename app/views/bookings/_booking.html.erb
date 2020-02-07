@@ -1,4 +1,4 @@
-<% if booking.status=='pending' && !current_user.user_type =='host' %>
+<% if booking.status=='pending' && current_user.user_type =='cleaner' %>
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
     <div id='booking-body'>

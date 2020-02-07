@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 
-  #The index controller shows a list of different Booking objects
+  #The index controller shows a list of different Bookings
   def index
     @user = current_user
     if @user.user_type == 'host'
