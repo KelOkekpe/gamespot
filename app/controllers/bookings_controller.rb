@@ -13,15 +13,17 @@ class BookingsController < ApplicationController
 
   def show
     @cleaner    = User.find(params[:cleaner_id])
-    @host       = current_user
+    @host       = User.find(params[:host_id])
     @booking    = Booking.new
   end
 
 
   def new
     @cleaner    = User.find(params[:cleaner_id])
-    @host       = current_user
+    @host       = User.find(params[:host_id])
     @booking    = Booking.new
+
+    @units = @host.units.map{|unit| unit}
   end
 
 
@@ -73,7 +75,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new(notes: booking_params[:notes],
       host_id: booking_params[:host_id],
       cleaner_id: booking_params[:cleaner_id],
-      starts_at: booking_params[:starts_at])
+      starts_at: booking_params[:starts_at],
+      unit_id: booking_params[:unit_id])
     if @booking.save
       flash[:success] = "Booking Created"
       redirect_to request_message_path
@@ -86,7 +89,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :starts_at, :utf8, :authenticity_token, :commit)
+    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :starts_at, :unit_id, :utf8, :authenticity_token, :commit)
   end
 
 
