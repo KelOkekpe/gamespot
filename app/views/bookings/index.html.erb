@@ -1,3 +1,4 @@
+<% if params[:status] == 'pending' %>
 <h1 style='text-align:center'> Pending Reservations </h1>
 <div class="row">
   <div class='container' style='text-align:center' id='booking-container'>
@@ -6,3 +7,13 @@
     </div>
   </div>
 </div>
+<% elsif params[:status] == 'approved' %>
+<h1 style='text-align:center'> Approved Reservations </h1>
+<div class="row">
+  <div class='container' style='text-align:center' id='booking-container'>
+    <div class='col-sm-12' style='text-align:center' id='booking-wrapper'>
+      <%= render @bookings %>
+    </div>
+  </div>
+</div>
+<% end %>

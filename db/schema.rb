@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_223446) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "trial_end_date", default: "2020-02-14 17:54:56"
+    t.datetime "trial_end_date", default: "2020-02-17 15:21:45"
     t.boolean "trial_paused", default: false
     t.string "state", default: "trial"
     t.string "user_type"
