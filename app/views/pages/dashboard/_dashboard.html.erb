@@ -36,14 +36,13 @@
           <h3>Host Calendar</h3>
           <div id="calendar">
 
-            <%= month_calendar events: Booking.all do |date, bookings| %>
+            <%= month_calendar events: Booking.select{|b|b.host_id == current_user.id} do |date, bookings| %>
               <%= date %>
 
               <% bookings.each do |booking| %>
                 <div>
-                  <%= booking.starts_at %>
-                  <%= booking.id %>
-                </div>
+                <% booking.price %>
+                <b> <%= link_to "#{booking.status}", bookings_path(status: "#{booking.status}") %> </b><br>
               <% end %>
             <% end %>
 
