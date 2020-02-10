@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def bio
     @user = User.find params[:test]
   end
-
+  
   def post
 
   end
