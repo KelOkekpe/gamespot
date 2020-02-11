@@ -6,19 +6,10 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
   get 'homepage', to: 'pages#homepage', as: 'homepage'
-  get 'main_feed', to: 'pages#main_feed', as: 'main_feed'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
   get 'user_table', to: 'pages#user_table', as: 'user_table'
   get 'user_details', to: 'pages#user_details', as: 'user_details'
-  get 'new_post', to: 'pages#new_post', as: 'new_post'
 
-
-  #Trial card routes
-  put 'extend_trial', to: 'pages#extend_trial', as: 'extend_trial'
-  put 'pause_trial', to: 'pages#pause_trial', as: 'pause_trial'
-  put 'unpause_trial', to: 'pages#unpause_trial', as: 'unpause_trial'
-  put 'suspend', to:'pages#suspend', as:'suspend'
-  put 'activate', to:'pages#activate', as:'activate'
 
 
   resources :bookings

@@ -15,4 +15,13 @@ class UserDecorator < SimpleDelegator
       days_left = '0'
     end
   end
+
+
+  def upcoming_bookings
+    if current_user.user_type == 'host'
+      bookings = Booking.select{|b| b.host == current_user}.map
+    elsif current_user.user_type == 'cleaner'
+      bookings = Booking.select{|b| b.cleaner == current_user}.map
+    end
+  end
 end

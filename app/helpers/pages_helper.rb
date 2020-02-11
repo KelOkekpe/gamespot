@@ -1,18 +1,16 @@
 module PagesHelper
 
-  def trial_card_partial_path
+  def upcoming_bookings_partial_path
     @user = current_user
 
-    if @user.state == 'paused'
-       'pages/dashboard/cards/trial_paused'
-     elsif @user.state == 'suspended'
-       'pages/dashboard/cards/suspended'
-     elsif @user.state == 'trial'
-       'pages/dashboard/cards/trial'
-     else @user.state == 'active'
-       'pages/dashboard/cards/active'
-     end
-   end
+    if current_user.user_type == 'host'
+      @upcoming_bookings =  Booking.where(host_id:current_user.id).map{|booking| booking}
+    elsif current_user.user_type == 'cleaner'
+        @upcoming_bookings =  Booking.where(cleaner_id:current_user.id).map{|booking| booking}
+    end
+    'pages/dashboard/cards/upcoming_bookings'
+  end
+
 
   def dashboard_helper_path
    @user = current_user
@@ -22,5 +20,15 @@ module PagesHelper
       render 'pages/dashboard/cleaner_dashboard'
     end
   end
+
+  # def user_table_helper_path
+  #   if current_user.user_type == 'host'
+  #     @users = User.where(:user_type => 'cleaner')
+  #     render 'pages/users/user_table'
+  #   else
+  #     @users = User.where(:user_type=>'host')
+  #     render 'pages/users/cleaner_user_table'
+  #   end
+  # end
 
 end
