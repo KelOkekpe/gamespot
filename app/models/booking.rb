@@ -17,12 +17,5 @@ class Booking < ApplicationRecord
   #   unit.name
   # end
 
-  def total_earnings
-    if current_user.user_type == 'cleaner'
-      Booking.where(cleaner_id:current_user.id).to_a.sum {|b| b.price.to_int}
-    elsif current_user.user_type == 'host'
-      Booking.where(host_id: current_user.id).to_a.sum {|b| b.price.to_int}
-    end
-  end
 
 end
