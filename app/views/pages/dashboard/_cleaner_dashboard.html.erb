@@ -14,7 +14,7 @@
 
   <div class="col-sm-3"id="account">
   <h1 style="text-align:center;font-weight: 200;font-size: 2rem;"><%= current_user.email %></h1>
-    <h3><b>Member Since</b> <%= Booking.total_earnings %></h3>
+    <h3><b>Member Since</b> <%= current_user.created_at.strftime("%B %d") %></h3>
     <h3><b>Member Type</b> <%= current_user.user_type %></h3>
   </div>
 
