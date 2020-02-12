@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :host, :class_name => 'User'
   belongs_to :cleaner, :class_name => 'User'
   belongs_to :unit, :class_name => 'Unit'
+  belongs_to :requested_by, :class_name => 'User'
 
 
 

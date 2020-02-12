@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_223446) do
+ActiveRecord::Schema.define(version: 2020_02_12_174226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_223446) do
     t.datetime "starts_at"
     t.integer "unit_id"
     t.decimal "price"
+    t.integer "requested_by_id"
     t.index ["cleaner_id"], name: "index_bookings_on_cleaner_id"
     t.index ["host_id"], name: "index_bookings_on_host_id"
   end
@@ -83,5 +84,6 @@ ActiveRecord::Schema.define(version: 2020_02_07_223446) do
   end
 
   add_foreign_key "bookings", "units"
+  add_foreign_key "bookings", "users", column: "requested_by_id"
   add_foreign_key "units", "users", column: "owner_id"
 end
