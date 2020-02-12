@@ -1,0 +1,28 @@
+<% if current_user.user_type == 'cleaner' %>
+    <div class="col-sm-12"id="calendar-container">
+      <h3 style='font-size:2.5rem; font-weight:200'>Cleaner Calendar</h3>
+        <div id="calendar">
+          <%= month_calendar events: Booking.select{|b|b.cleaner_id == current_user.id} do |date, bookings| %>
+            <%= date %>
+            <% bookings.each do |booking| %>
+              <div>
+                <% booking.price %>
+                <b> <%= link_to "#{booking.unit.name}: #{booking.status}", bookings_path(status: "#{booking.status}") %> </b><br><br>
+            <% end %>
+          <% end %>
+  </div>
+<% elsif current_user.user_type == 'host' %>
+  <div class="row">
+    <div class="col-sm-12"id="calendar-container">
+      <h3>Host Calendar</h3>
+      <div id="calendar">
+        <%= month_calendar events: Booking.select{|b|b.host_id == current_user.id} do |date, bookings| %>
+          <%= date %>
+            <% bookings.each do |booking| %>
+              <div>
+                <% booking.price %>
+                <b> <%= link_to "#{booking.unit.name}: #{booking.status}", bookings_path(status: "#{booking.status}") %> </b><br><br>
+            <% end %>
+          <% end %>
+  </div>
+<% end %>
