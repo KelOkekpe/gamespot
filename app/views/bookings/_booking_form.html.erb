@@ -1,13 +1,13 @@
 <div class = 'container'>
-<% if current_user.user_type = 'host' %>
-<h1 style='text-align:center'>Book <%= @cleaner.name %> for a cleanings </h1>
-<% elsif current_user.user_type = 'cleaner' %>
-<h1 style='text-align:center'>Book <%= @host.name %> for a cleanings </h1>
-<% end %>
+  <% if current_user.user_type == 'host' %>
+    <h1 style='text-align:center'>Book <%= @cleaner.name %> for a cleaning </h1>
+  <% elsif current_user.user_type == 'cleaner' %>
+    <h1 style='text-align:center'>Book <%= @host.name %> for a cleaning </h1>
+  <% end %>
 
-<%= bootstrap_form_for @booking do |f| %>
+  <%= bootstrap_form_for @booking do |f| %>
     <%= f.text_area :notes,
-                    rows: 6,
+                    rows: 3,
                     minlength: 5,
                     maxlength: 1000,
                     placeholder: 'Leave a note for your cleaner!',
@@ -20,7 +20,8 @@
     <%= f.date_field :starts_at, class_name: 'form-control' %>
 
     <%= f.collection_select(:unit_id, @units, :id, :name) %>
+    <%= f.number_field :price %>
 
     <%= f.submit "Book Now!", id:'client-btn', class: 'form-control btn btn-primary'  %>
-    <% end %>
+  <% end %>
 </div>

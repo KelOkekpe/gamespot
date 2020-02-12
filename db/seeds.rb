@@ -53,24 +53,25 @@ def seed_units
 end
 
 
-def seed_bookings(starts_at)
-  number = 1
-  20.times do |booking|
-    booking = Booking.create(
-      notes: Faker::Movies::StarWars.quote,
-      host_id: rand(6..10),
-      cleaner_id: rand(1..5),
-      unit_id: rand(1..20),
-      status: ['pending', 'approved','denied','cancelled'].sample,
-      starts_at: rand_time(30.days.ago),
-      price: rand(40..100).to_int
-    )
-    puts "seeding booking #{number}"
-    booking.save!
-    number+=1
-  end
-  puts "finished seeding bookings"
-end
+# def seed_bookings(starts_at)
+#   number = 1
+#   20.times do |booking|
+#     booking = Booking.create(
+#       notes: Faker::Movies::StarWars.quote,
+#       host_id: rand(6..10),
+#       cleaner_id: rand(1..5),
+#       unit_id: rand(1..20),
+#       status: ['pending', 'approved','denied','cancelled'].sample,
+#       starts_at: rand_time(30.days.ago),
+#       price: rand(40..100).to_int,
+#       requested_by_id: rand(1..5)
+#     )
+#     puts "seeding booking #{number}"
+#     booking.save!
+#     number+=1
+#   end
+#   puts "finished seeding cleaner requested bookings"
+# end
 
 
 def rand_time(from, to=Time.now)

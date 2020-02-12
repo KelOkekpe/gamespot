@@ -17,7 +17,8 @@ class BookingsController < ApplicationController
     @cleaner    = User.find(params[:cleaner_id])
     @host       = User.find(params[:host_id])
     @booking    = Booking.new
-    @units = @host.units.map{|unit| unit}
+    @units      = @host.units.map{|unit| unit}
+    @price      = @booking.price
   end
 
   def approve

@@ -3,11 +3,6 @@ class PagesController < ApplicationController
   def index
   end
 
-  def homepage
-     #this shows 5 random posts
-    @posts = Post.offset(rand(Post.count)).limit(5)
-  end
-
   def dashboard
     @user = current_user
     if user_signed_in?
