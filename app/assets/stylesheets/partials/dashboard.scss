@@ -17,7 +17,7 @@
 }
 
 #dashboard-title{
-
+  margin-top: 5rem;
   color:#de3e8e;
   font-weight:200;
 }
@@ -173,12 +173,13 @@ p{
   background-color: white;
   border-radius:5px;
   box-shadow: 0 1px 3px 0 #c2d2dd;
-  height:530px;
   margin:10px;
   width:106rem;
   margin-bottom:25px;
   #calendar{
-
+    text-align:center;
+    font-size: 1.25rem;
+    color:black;
   }
 }
 #pro{
