@@ -1,52 +1,50 @@
-<div class='row'><h2 style='text-align:center; width:1080px; color:white;' id='dashboard-title'>Cleaner Dashboard</h2></div>
+<div class='row'><h2 style='text-align:center; width:1080px; color:black;' id='dashboard-title'>Cleaner Dashboard</h2></div>
 
-<div class="row" id="tabs" style='text-align:center; width:1080px'>
-  <div class="col-sm-2"> <%= link_to 'Overview', main_feed_path, :id=>'overview' %> </div>
-  <div class="col-sm-2"> <%= link_to 'Companies', dashboard_path, :id=>'companies' %> </div>
-  <div class="col-sm-2"> <%= link_to 'Users', user_table_path, :id=>'users' %> </div>
-  <div class="col-sm-2"> <%= link_to 'Invoices', root_path, :id=>'invoices' %> </div>
-  <div class="col-sm-2"> <%= link_to 'Alerts', root_path, :id=>'alerts' %> </div>
-  <div class="col-sm-2"> <%= link_to 'Notes', root_path, :id=>'notes-link' %> </div>
+  <div class="row" id="tabs" style='text-align:center; width:1080px'>
+    <div class="col-sm-3"> <%= link_to 'Listings', root_path, :id=>'overview' %> </div>
+    <div class="col-sm-2"> <%= link_to 'Earnings', dashboard_path, :id=>'companies' %> </div>
+    <div class="col-sm-2"> <%= link_to 'Hosts', user_table_path, :id=>'users' %> </div>
+    <div class="col-sm-2"> <%= link_to 'History', root_path, :id=>'alerts' %> </div>
+    <div class="col-sm-3"> <%= link_to 'FAQ', root_path, :id=>'notes-link' %> </div>
+  </div>
+
+  <div class="row" id="row1">
+
+  <%= render upcoming_bookings_partial_path %>
+
+  <div class="col-sm-3"id="account">
+  <h1 style="text-align:center;font-weight: 200;font-size: 2rem;"><%= current_user.email %></h1>
+    <h3><b>Member Since</b> <%= Booking.total_earnings %></h3>
+    <h3><b>Member Type</b> <%= current_user.user_type %></h3>
+  </div>
+
+  <div class="col-sm-3"id="pending-bookings">
+    <h1 style='text-align:center' id='user-posts'><%= @pending_bookings %></h1>
+    <h3 style='text-align:center;'><b><%= link_to 'Pending Reservations', bookings_path(status: 'pending')%> </b></h3>
+  </div>
+
+  <div class="col-sm-3"id="approved-bookings">
+    <h1 style='text-align:center' id='total-bookings'><%= @approved_bookings%></h1>
+    <h3 style='text-align:center'><b><%= link_to 'Approved Reservations', bookings_path(status: 'approved') %> </b></h3>
+  </div>
 </div>
 
-    <div class="row" id="row1">
 
-      <%= render trial_card_partial_path %> <%#this is a helper method that shows x days left or trial paused depending on user trial_paused vlaue %>
+<div class="row">
+  <div class="col-sm-12"id="calendar-container">
+    <h3 style='font-size:2.5rem; font-weight:200'>Cleaner Calendar</h3>
+    <div id="calendar">
 
-      <div class="col-sm-3"id="account">
-      <h1 style="text-align:center;font-weight: 200;font-size: 2rem;"><%= current_user.email %></h1>
-        <h3><b>Member Since</b> <%= current_user.created_at.strftime("%B %d") %></h3>
-        <h3><b>Member Type</b> <%= current_user.user_type %></h3>
-      </div>
+      <%= month_calendar events: Booking.select{|b|b.cleaner_id == current_user.id} do |date, bookings| %>
+        <%= date %>
 
-      <div class="col-sm-3"id="pending-bookings">
-        <h1 style='text-align:center' id='user-posts'><%= @pending_bookings %></h1>
-        <h3 style='text-align:center'><b><%= link_to 'Pending Reservations', bookings_path(status: 'pending')%> </b></h3>
-      </div>
+        <% bookings.each do |booking| %>
+          <div>
+          <% booking.price %>
+          <b> <%= link_to "#{booking.unit.name}: #{booking.status}", bookings_path(status: "#{booking.status}") %> </b><br><br>
+        <% end %>
+      <% end %>
 
-      <div class="col-sm-3"id="approved-bookings">
-        <h1 style='text-align:center' id='total-bookings'><%= @approved_bookings%></h1>
-        <h3 style='text-align:center'><b><%= link_to 'Approved Reservations', bookings_path(status: 'approved') %> </b></h3>
-      </div>
     </div>
-
-
-    <div class="row">
-      <div class="col-sm-12"id="billing">
-        <h3>Host Calendar</h3>
-        <div id="calendar">
-
-          <%= month_calendar events:  Booking.select{|b|b.cleaner_id == current_user.id} do |date, booking| %>
-            <%= date %>
-
-            <% booking.each do |booking| %>
-              <div>
-                <%= truncate(booking.notes, length:30) %>
-              </div>
-            <% end %>
-          <% end %>
-
-
-        </div>
-      </div>
-    </div>
+  </div>
+</div>
