@@ -2,10 +2,11 @@
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
     <div id='booking-body'>
-      <b><div id='request-type'> OUTGOING REQUEST </div></b>
+      <b><div id='booking-time'> OUTGOING REQUEST </div></b>
+      <div id='booking-time'><b>Unit Name:</b> <%= booking.unit.name %></div>
       <div id='booking-time'><b>Reservation Date:</b> <%= booking.starts_at.to_date %></div>
       <div id='booking-price'><b>Price:</b> $<%= booking.price.to_int %></div><br>
-      <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+      <div id='booking-notes'><b>Notes: </b><%= truncate(booking.notes, :length => 60) %> </div>
       <div class='row'>
         <div class="col-sm-12"><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
       </div>
@@ -15,10 +16,11 @@
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
     <div id='booking-body'>
-      <b><div id='request-type'> INCOMING REQUEST </div></b>
+      <b><div id='booking-time'> INCOMING REQUEST </div></b>
+      <div id='booking-time'><b>Unit Name:</b> <%= booking.unit.name %></div>
       <div id='booking-time'><b>Reservation Date:</b> <%= booking.starts_at.to_date %></div>
       <div id='booking-price'><b>Price:</b> $<%= booking.price.to_int %></div><br>
-      <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+      <div id='booking-notes'><b>Notes: </b><%= truncate(booking.notes, :length => 60) %> </div>
       <div class='row'>
         <div class="col-sm-6"><%= button_to 'Approve', approve_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
         <div class="col-sm-6"><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
@@ -29,10 +31,11 @@
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
     <div id='booking-body'>
-      <b><div id='request-type'> INCOMING REQUEST </div></b>
+      <b><div id='booking-time'> INCOMING REQUEST </div></b>
+      <div id='booking-time'><b>Unit Name:</b> <%= booking.unit.name %></div>
       <div id='booking-time'><b>Reservation Date:</b> <%= booking.starts_at.to_date %></div>
       <div id='booking-price'><b>Price:</b> $<%= booking.price.to_int %></div><br>
-      <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+      <div id='booking-notes'><b>Notes: </b><%= truncate(booking.notes, :length => 60) %> </div>
       <div class='row'>
         <div class="col-sm-6"><%= button_to 'Approve', approve_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
         <div class="col-sm-6"><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
@@ -43,10 +46,11 @@
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
     <div id='booking-body'>
-      <b><div id='request-type'> OUTGOING REQUEST </div></b>
+      <b><div id='booking-time'> OUTGOING REQUEST </div></b>
+      <div id='booking-time'><b>Unit Name:</b> <%= booking.unit.name %></div>
       <div id='booking-time'<b>>Reservation Date:</b> <%= booking.starts_at.to_date %></div>
       <div id='booking-price'><b>Price:</b> $<%= booking.price.to_int %></div><br>
-      <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+      <div id='booking-notes'><b>Notes: </b><%= truncate(booking.notes, :length => 60) %> </div>
       <div class='row'>
         <div class="col-sm-12"><%= button_to 'Cancel Reservation', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
       </div>
@@ -56,9 +60,10 @@
 <div class='card' id='booking-card'>
   <div id='booking-header'><%= booking.host.name %></div>
   <div id='booking-body'>
+    <div id='booking-time'><b>Unit Name:</b> <%= booking.unit.name %></div>
     <div id='booking-time'><b>Reservation Date:</b> <%= booking.starts_at.to_date %></div>
     <div id='booking-price'><b>Price:</b> $<%= booking.price.to_int %></div><br>
-    <div id='booking-notes'><%= truncate(booking.notes, :length => 60) %> </div>
+    <div id='booking-notes'><b>Notes: </b><%= truncate(booking.notes, :length => 60) %> </div>
     <div class='row'>
       <div class="col-sm-12"><%= button_to 'Cancel Reservation', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></div>
     </div>

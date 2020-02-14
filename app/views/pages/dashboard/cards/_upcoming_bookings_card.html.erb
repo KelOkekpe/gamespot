@@ -2,19 +2,19 @@
     <b><h1 style='text-align:center' id='upcoming-cleanings-title'> Upcoming Cleanings</h1></b>
 
     <p id='upcoming-booking-text'>
-      <%= @upcoming_bookings.sort_by do |booking|
-      (booking.starts_at.to_time - Time.current.to_time).abs
-      end.first.unit.name %>
-      <%= @upcoming_bookings.sort_by do |booking|
-        (booking.starts_at.to_time - Time.current.to_time).abs
-        end.first.starts_at.strftime("%m/%d/%Y") %>
-    </p>
-    <p id='upcoming-booking-text'>
-      <%= @upcoming_bookings.sort_by do |booking|
-      (booking.starts_at.to_time - Time.current.to_time).abs
-      end.second.unit.name %>
-      <%= @upcoming_bookings.sort_by do |booking|
-        (booking.starts_at.to_time - Time.current.to_time).abs
-        end.second.starts_at.strftime("%m/%d/%Y") %>
-    </p>
+        <%= @upcoming_bookings&.sort_by do |booking|
+        (booking&.starts_at.to_time - Time.current.to_time).abs
+        end.first&.unit&.name %>
+        <%= @upcoming_bookings&.sort_by do |booking|
+          (booking&.starts_at&.to_time - Time.current.to_time).abs
+          end.first&.starts_at&.strftime("%m/%d/%Y") %>       </p>
+
+      <p id='upcoming-booking-text'>
+        <%= @upcoming_bookings&.sort_by do |booking|
+        (booking&.starts_at&.to_time - Time.current.to_time).abs
+        end.second&.unit&.name %>
+        <%= @upcoming_bookings&.sort_by do |booking|
+          (booking&.starts_at&.to_time - Time.current.to_time).abs
+          end.second&.starts_at&.strftime("%m/%d/%Y") %>      </p>
+
 </div>

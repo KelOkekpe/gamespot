@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Units</h1>
 
+
+<div class='container' style='width:15rem text-align:center'>
+<h1>Units</h1>
 <table>
   <thead>
     <tr>
@@ -12,14 +14,18 @@
   <tbody>
     <% @units.each do |unit| %>
       <tr>
-        <td><%= link_to 'Show', unit %></td>
+        <td><%= link_to "#{unit.name}", unit %></td>
+        <% if current_user.id == unit.owner.id %>
         <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
         <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user.user_type == 'host' %>
 <%= link_to 'New Unit', new_unit_path %>
+<% end %>
+</div>

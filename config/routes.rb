@@ -36,14 +36,6 @@ Rails.application.routes.draw do
   end
 
 
-  resources :posts do
-    collection do
-      get 'sports'
-      get 'games'
-      get 'music'
-    end
-  end
-  post 'create', to: 'post#create', as: 'create_post'
 
 
 end

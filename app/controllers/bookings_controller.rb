@@ -64,6 +64,7 @@ class BookingsController < ApplicationController
       cleaner_id: booking_params[:cleaner_id],
       requested_by_id: booking_params[:requested_by_id],
       starts_at: booking_params[:starts_at],
+      price: booking_params[:price],
       unit_id: booking_params[:unit_id])
     if @booking.save
       flash[:success] = "Booking Created"
@@ -80,7 +81,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :requested_by_id, :starts_at, :unit_id, :utf8, :authenticity_token, :commit)
+    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :requested_by_id, :starts_at, :price, :unit_id, :utf8, :authenticity_token, :commit)
   end
 
 end

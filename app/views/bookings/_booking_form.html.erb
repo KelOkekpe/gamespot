@@ -20,7 +20,7 @@
     <%= f.date_field :starts_at, class_name: 'form-control' %>
 
     <%= f.collection_select(:unit_id, @units, :id, :name) %>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: 'form-control' %>
 
     <%= f.submit "Book Now!", id:'client-btn', class: 'form-control btn btn-primary'  %>
   <% end %>

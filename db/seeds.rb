@@ -18,7 +18,7 @@ def seed_users
 
   5.times do |user|
     user = User.create(
-      name: "host user#{user_id}",
+      name: Faker::TvShows::FamilyGuy.character,
       email: "host#{user_id}@test.com",
       password: 'password',
       password_confirmation: 'password',
@@ -85,4 +85,4 @@ end
 
 seed_users
 seed_units
-seed_bookings(rand_time(30.days.ago))
+# seed_bookings(rand_time(30.days.ago))

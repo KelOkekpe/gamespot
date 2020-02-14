@@ -1,4 +1,11 @@
+<div class='container' style='text-align:center'>
 <p id="notice"><%= notice %></p>
+<p id='unit-name'><%= "#{@unit.name}" %>
+<% if current_user.id == @unit.owner.id %>
+<%= link_to 'Edit', edit_unit_path(@unit) %> <% end %> |
+<%= link_to 'Back', units_path %><br>
+<p id='unit-address'><%= "#{@unit.address}, #{@unit.city}, #{@unit.state}, #{@unit.zip_code}" %></p>
+<br><br>
 
-<%= link_to 'Edit', edit_unit_path(@unit) %> |
-<%= link_to 'Back', units_path %>
+<%= render 'units/map/map' %>
+</div>
