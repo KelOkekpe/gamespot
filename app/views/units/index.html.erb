@@ -16,6 +16,7 @@
   </thead>
 
   <tbody>
+    <% if current_user.user_type == 'cleaner' %>
     <% @units.each do |unit| %>
       <tr>
         <td><%= link_to "#{unit.name}", unit %></td>
@@ -27,6 +28,19 @@
         <% end %>
       </tr>
     <% end %>
+    <% elsif current_user.user_type == 'host' %>
+      <% @units.where(owner_id:current_user.id).each do |unit| %>
+        <tr>
+          <td><%= link_to "#{unit.name}", unit %></td>
+          <td><%= link_to "#{unit.owner.name}", unit %></td>
+          <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
+          <% if current_user.id == unit.owner.id %>
+          <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
+          <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+        </tr>
+      <% end %>
   </tbody>
 </table>
 
