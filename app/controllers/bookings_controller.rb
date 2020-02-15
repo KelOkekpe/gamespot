@@ -19,6 +19,7 @@ class BookingsController < ApplicationController
     @booking    = Booking.new
     @units      = @host.units.map{|unit| unit}
     @price      = @booking.price
+    @starts_at = params[:starts_at]
   end
 
   def approve

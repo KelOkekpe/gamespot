@@ -17,7 +17,7 @@
     <%= f.hidden_field :host_id,    value: @host.id    %>
     <%= f.hidden_field :requested_by_id,    value: current_user.id    %>
 
-    <%= f.date_field :starts_at, class_name: 'form-control' %>
+    <%= f.date_field :starts_at, :value => @starts_at, class_name: 'form-control' %>
 
     <%= f.collection_select(:unit_id, @units, :id, :name) %>
     <%= f.number_field :price, class: 'form-control' %>
