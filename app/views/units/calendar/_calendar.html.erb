@@ -3,7 +3,7 @@
     <h3 style='font-size:2.5rem; font-weight:200'><%= "#{@unit.owner.name}'s Calendar" %></h3>
       <div id="calendar">
         <%= month_calendar events: Booking.select{|b|b.host_id == @unit.owner.id} do |date, bookings| %>
-          <% if current_user.user_type == 'cleaner' %>
+          <% if current_user.user_type == 'cleaner' &&  %>
             <%= link_to date, new_booking_path(cleaner_id: current_user.id, host_id:@unit.owner.id, starts_at: date) %>
           <% else %>
             <%= date %>

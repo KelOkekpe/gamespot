@@ -82,7 +82,8 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :requested_by_id, :starts_at, :price, :unit_id, :utf8, :authenticity_token, :commit)
+    params.require(:booking).permit(:notes, :cleaner_id, :host_id, :requested_by_id,
+       :starts_at, :price, :unit_id, :utf8, :authenticity_token, :commit)
   end
 
 end

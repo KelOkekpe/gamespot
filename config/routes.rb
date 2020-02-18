@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   get 'homepage', to: 'pages#homepage', as: 'homepage'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
-  get 'user_table', to: 'pages#user_table', as: 'user_table'
   get 'user_details', to: 'pages#user_details', as: 'user_details'
 
+
+  get 'user_table', to: 'users#index', as: 'user_table'
 
 
   resources :bookings

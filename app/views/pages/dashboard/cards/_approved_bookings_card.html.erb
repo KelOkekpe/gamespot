@@ -1,4 +1,4 @@
-<div class="col-sm-3"id="approved-bookings">
-  <h1 style='text-align:center' id='total-bookings'><%= @approved_bookings%></h1>
+<div class="col-sm-3"id="booking-card">
+  <h1 style='text-align:center' id='total-bookings'><%= BookingDecorator.new(@bookings).approved(current_user) %></h1>
   <h3 style='text-align:center'><b><%= link_to 'Approved Reservations', bookings_path(status: 'approved') %> </b></h3>
 </div>
