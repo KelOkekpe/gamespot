@@ -1,51 +1,52 @@
-<p id="notice"><%= notice %></p>
 
-
-<h1 style='text-align:center'>Units</h1><br>
 <div class='container' style='width:30rem text-align:center'>
-<table class='table'>
-  <thead>
-    <tr>
-      <th scope='col'>Unit Name</th>
-      <th scope='col'>Unit Owner</th>
-      <th scope='col'>Location</th>
-      <th scope='col'>Edit</th>
-      <th scope='col'>Remove</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_user.user_type == 'cleaner' %>
-    <% @units.each do |unit| %>
+  <h1 style='text-align:center; padding-bottom:5rem'>Units</h1>
+  <table class='table'>
+    <thead>
       <tr>
-        <td><%= link_to "#{unit.name}", unit %></td>
-        <td><%= link_to "#{unit.owner.name}", unit %></td>
-        <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
-        <% if current_user.id == unit.owner.id %>
-        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
-        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th scope='col'>Unit Name</th>
+        <th scope='col'>Unit Owner</th>
+        <th scope='col'>Location</th>
+        <th scope='col'>Edit</th>
+        <th scope='col'>Remove</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-    <% elsif current_user.user_type == 'host' %>
-      <% @units.where(owner_id:current_user.id).each do |unit| %>
+    </thead>
+
+    <tbody>
+      <% if current_user.user_type == 'cleaner' %>
+      <% @units.each do |unit| %>
         <tr>
           <td><%= link_to "#{unit.name}", unit %></td>
           <td><%= link_to "#{unit.owner.name}", unit %></td>
           <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
           <% if current_user.id == unit.owner.id %>
-          <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
-          <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-primary btn-sm', method: :get %></td>
+          <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
-        <% end %>
         </tr>
       <% end %>
-  </tbody>
-</table>
+      <% elsif current_user.user_type == 'host' %>
+        <% @units.where(owner_id:current_user.id).each do |unit| %>
+          <tr>
+            <td><%= link_to "#{unit.name}", unit %></td>
+            <td><%= link_to "#{unit.owner.name}", unit %></td>
+            <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
+            <% if current_user.id == unit.owner.id %>
+            <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-primary btn-sm', method: :get %></td>
+            <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          <% end %>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
 
-<br>
-<% if current_user.user_type == 'host' %>
-<%= link_to 'New Unit', new_unit_path %>
-<% end %>
-</div>
+
+
+
+  <br>
+  <% if current_user.user_type == 'host' %>
+  <%= link_to 'New Unit', new_unit_path %>
+  <% end %>
+  </div>
