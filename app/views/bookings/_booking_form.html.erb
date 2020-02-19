@@ -1,7 +1,7 @@
 <div class = 'container'>
-  <% if current_user.user_type == 'host' %>
+  <% if host %>
     <h1 style='text-align:center'>Book <%= @cleaner.name %> for a cleaning </h1>
-  <% elsif current_user.user_type == 'cleaner' %>
+  <% elsif cleaner %>
     <h1 style='text-align:center'>Book <%= @host.name %> for a cleaning </h1>
   <% end %>
 

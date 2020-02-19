@@ -1,7 +1,7 @@
 <div class="col-sm-3"id="trial">
-    <b><h1 style='text-align:center' id='upcoming-cleanings-title'> Upcoming Cleanings</h1></b>
+    <b><h1 style='text-align:center' id='dashboard-cards-title'> Upcoming Cleanings</h1></b>
 
-    <p id='upcoming-booking-text'>
+    <p id='dashboard-cards-text'>
         <%= @upcoming_bookings&.sort_by do |booking|
         (booking&.starts_at.to_time - Time.current.to_time).abs
         end.first&.unit&.name %>
@@ -9,7 +9,7 @@
           (booking&.starts_at&.to_time - Time.current.to_time).abs
           end.first&.starts_at&.strftime("%m/%d/%Y") %>       </p>
 
-      <p id='upcoming-booking-text'>
+      <p id='dashboard-cards-text'>
         <%= @upcoming_bookings&.sort_by do |booking|
         (booking&.starts_at&.to_time - Time.current.to_time).abs
         end.second&.unit&.name %>

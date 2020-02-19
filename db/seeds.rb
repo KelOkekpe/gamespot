@@ -38,8 +38,8 @@ def seed_units
   number = 1
   20.times do |unit|
     unit = Unit.create(
-      name: Faker::Cannabis.strain,
-      owner_id: rand(1..10),
+      name: Faker::TvShows::SiliconValley.company,
+      owner_id: rand(6..10),
       address: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state,

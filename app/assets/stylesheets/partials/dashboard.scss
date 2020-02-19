@@ -1,15 +1,4 @@
-#container {
-  width: 100px;
-  height: 100px;
-  position: relative;
-}
 
-#dashboard-wrapper{
-  position: center;
-   width: 100%;
-   margin-top:-5rem;
-
-}
 #dashboard-wrapper{
   width:1110px;
   height:8750px;
@@ -22,20 +11,14 @@
   font-weight:200;
 }
 
-p{
-  margin-left: 2rem;
-}
 
 
 #tabs{
   border: solid 1px #ececec;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.9) inset;
 }
-#overview{
-  color:white;
-  font-weight:bold;
-}
-#companies{
+
+#listings{
   color:white;
   font-weight:bold;
 }
@@ -43,22 +26,25 @@ p{
   color:white;
   font-weight:bold;
 }
-#alerts{
+#earnings{
   color:white;
   font-weight:bold;
 }
-#invoices{
+#history{
   color:white;
   font-weight:bold;
 }
-#notes-link{
+#faq{
   color:white;
   font-weight:bold;
 }
 
+
+
 #row1{
   margin:2 0 0 0 auto;
   width:100%;
+
   #trial{
     background-color: white;
     box-shadow: 0 1px 3px 0 #c2d2dd;
@@ -67,80 +53,27 @@ p{
     height:20rem;
     margin:10px;
 
-    #upcoming-cleanings-title{
+
+    #dashboard-cards-title{
       font-weight:200;
       font-size: 3rem;
       color:#de3e8e;
-    }
-    .fa-disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      color:#dfdfdf;
+      text-align:center;
     }
 
-    #trial-suspended{
-      font-weight:200;
-      text-align:center;
-      font-size: 3rem;
-      color:#de3e8e;
-    }
-    #upcoming-booking-text{
+    #dashboard-cards-text{
       font-size:12px;
       color:#777777;
     }
-    #icons{
-      padding-top:10px;
-      margin:auto;
-      width: 166px;
-      height: 38px;
 
-      #renew{
-        color:black;
-        border: hidden;
-        padding:0px;
-      }
-      #pause{
-        color:black;
-        border:hidden;
-        padding:0px;
-      }
-      #unpause{
-        color:black;
-        border:hidden;
-        padding:0px;
-      }
 
-      #check{
-        color:black;
-        border:hidden;
-        padding:0px;
-      }
-
-      #activate{
-        color:black;
-        border:hidden;
-        padding:0px;
-      }
-
-      #suspend{
-        color:black;
-        border:hidden;
-        padding:0px;
-      }
+    #total-bookings{
+      font-weight:200;
+      font-size: 4rem;
+      color:#de3e8e;
     }
 
-  }
-  #account{
-    background-color: white;
-    border-radius:5px;
-    box-shadow: 0 1px 3px 0 #c2d2dd;
-    width:25rem;
-    height:20rem;
-    margin:10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+
   #pending-bookings{
     background-color: white;
     border-radius:5px;
@@ -148,27 +81,11 @@ p{
     width:25rem;
     height:20rem;
     margin:10px;
-    #user-posts{
-      font-weight:200;
-      font-size: 4rem;
-      color:#de3e8e;
-    }
-  }
-  #booking-card{
-    background-color: white;
-    border-radius:5px;
-    box-shadow: 0 1px 3px 0 #c2d2dd;
-    width:25rem;
-    height:20rem;
-    margin:10px;
-
-    #total-bookings{
-      font-weight:200;
-      font-size: 4rem;
-      color:#de3e8e;
-    }
   }
 }
+
+}
+
 #calendar-container{
   background-color: white;
   border-radius:5px;
@@ -182,35 +99,8 @@ p{
     color:black;
   }
 }
-#pro{
-  background-color: white;
-  border-radius:5px;
-  width:34rem;
-  margin-left:10px;
-  box-shadow: 0 1px 3px 0 #c2d2dd;
-  margin-right:20px;
-  margin-bottom:20px;
-  height:20rem;
 
 
-}
-#notes{
-  background-color: white;
-  border-radius:5px;
-  width:34rem;
-  box-shadow: 0 1px 3px 0 #c2d2dd;
-  margin-right:20px;
-  height:20rem;
-  margin-bottom:20px;
-}
-#actions{
-  background-color: white;
-  border-radius:5px;
-  width:34rem;
-  box-shadow: 0 1px 3px 0 #c2d2dd;
-  height:20rem;
-  margin-bottom:20px;
-}
 
 h3{
   margin:auto;
@@ -236,4 +126,20 @@ h2{
     background-color:#50d3be;
     border-color: #50d3be
   }
+}
+
+
+
+.centered-table {
+  background-color: white;
+  border-radius:5px;
+  box-shadow: 0 1px 3px 0 #c2d2dd;
+  margin-top:20rem;
+  width:100rem;
+  margin-bottom:25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }

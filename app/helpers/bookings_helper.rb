@@ -18,5 +18,15 @@ module BookingsHelper
 
   def approved(booking)
     booking.status == 'approved'
-  end 
+  end
+
+  def host
+    current_user.user_type == 'host'
+  end
+
+  def cleaner
+    current_user.user_type == 'cleaner'
+  end
+
+  
 end

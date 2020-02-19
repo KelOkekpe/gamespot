@@ -1,4 +1,4 @@
-<div class="col-sm-3"id="booking-card">
+<div class="col-sm-3"id="trial">
   <h1 style='text-align:center' id='total-bookings'><%= BookingDecorator.new(@bookings).pending(current_user) %></h1>
-  <h3 style='text-align:center;'><b><%= link_to 'Pending Reservations', bookings_path(status: 'pending')%> </b></h3>
+  <h3 style='text-align:center'><b><%= link_to 'Pending Reservations', bookings_path(status: 'pending')%> </b></h3>
 </div>

@@ -1,47 +1,39 @@
-<% if current_user.user_type == 'host' %>
-<h1 style='text-align:center'> Here are a list of Cleaners </h1>
-<div class='container' style='width:15rem text-align:center'>
-<table class = "table">
-  <thead>
-  <tr>
-    <th scope='col'>id</th>
-    <th scope='col'>name</th>
-    <th scope='col'>email</th>
-    <th scope='col'>Request</th>
-  </tr>
-  <%= count = 1 %>
-<%= @users.each do |user| %>
-  <tr>
-    <td><%= user.id %></td>
-    <td><%= link_to user.name, new_booking_path(cleaner_id: user.id, host_id: current_user.id)  %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Book Now!', new_booking_path(cleaner_id: user.id, host_id: current_user.id),
-      :id => "client-btn", class: 'btn btn-primary' %></td>
-    <%= count += 1 %>
+<div style='text-align:center'>
+<%= link_to 'Back', dashboard_path %></div>
+
+<% if host %>
+  <h1 style='text-align:center'> Here are a list of Cleaners </h1>
+<% elsif cleaner %>
+  <h1 style='text-align:center'> Here are a list of Hosts </h1>
 <% end %>
-</table>
-</div>
-<% elsif current_user.user_type == 'cleaner' %>
-<h1 style='text-align:center'> Here are a list of Hosts </h1>
-<div class='container' style='width:15rem text-align:center'>
-<table class = "table">
-  <thead>
-  <tr>
-    <th scope='col'>id</th>
-    <th scope='col'>name</th>
-    <th scope='col'>email</th>
-    <th scope='col'>Request</th>
-  </tr>
-  <%= count = 1 %>
-<%= @users.each do |user| %>
-  <tr>
-    <td><%= user.id %></td>
-    <td><%= link_to user.name, new_booking_path(cleaner_id: user.id, host_id: current_user.id)  %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Book Now!', new_booking_path(cleaner_id: current_user.id, host_id: user.id),
-      :id => "client-btn", class: 'btn btn-primary' %></td>
-    <%= count += 1 %>
-<% end %>
-</table>
-</div>
-<% end %>
+
+  <div class="col-sm-6" id="calendar-container">
+    <table class = "table">
+      <thead>
+      <tr>
+        <th scope='col'>id</th>
+        <th scope='col'>name</th>
+        <th scope='col'>email</th>
+        <th scope='col'>Request</th>
+      </tr>
+
+      <tbody>
+        <% count = 1 %>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <% if host %>
+              <td><%= link_to user.name, new_booking_path(cleaner_id: user.id, host_id: current_user.id)  %></td>
+              <td><%= user.email %></td>
+              <td><%= button_to 'Book Now!', new_booking_path(cleaner_id: user.id, host_id: current_user.id), class: 'btn btn-primary btn-sm' %></td>
+            <% elsif cleaner %>
+              <td><%= link_to user.name, new_booking_path(cleaner_id: current_user.id, host_id: user.id)  %></td>
+              <td><%= user.email %></td>
+              <td><%= link_to 'Book Now!', new_booking_path(cleaner_id: current_user.id, host_id: user.id), class: 'btn btn-primary btn-sm' %></td>
+            <% end %>
+
+            <% count += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

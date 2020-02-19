@@ -1,15 +1,15 @@
 <% if current_user.user_type == 'host' %>
-  <div class="col-sm-3"id="trial">
-    <h1 style='text-align:center' id='upcoming-cleanings-title'> Earnings Summary </h1>
-      <p id='upcoming-booking-text' style='margin-top:20px'><b>All-Time Paid Out</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>
-      <p id='upcoming-booking-text' style='margin-top:1px'><b>Potential Payouts</b> <%= GetPrice::PotentialEarnings.new(current_user).execute %></h3>
-      <p id='upcoming-booking-text' style='margin-top:1px'><b>Monthly Payouts</b> <%= GetPrice::MonthlyEarnings.new(current_user).execute %></h3>
+  <div class="col-sm-3" id="trial">
+    <h1 style='text-align:center' id='dashboard-cards-title'> Earnings Summary </h1>
+      <p id='dashboard-cards-text' style='margin-top:20px'><b>All-Time Paid Out</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>
+      <p id='dashboard-cards-text' style='margin-top:1px'><b>Potential Payouts</b> <%= GetPrice::PotentialEarnings.new(current_user).execute %></h3>
+      <p id='dashboard-cards-text' style='margin-top:1px'><b>Monthly Payouts</b> <%= GetPrice::MonthlyEarnings.new(current_user).execute %></h3>
   </div>
 <% elsif current_user.user_type == 'cleaner' %>
   <div class="col-sm-3"id="trial">
-    <h1 style='text-align:center' id='upcoming-cleanings-title'> Earnings Summary </h1>
-      <p id='upcoming-booking-text' style='margin-top:20px'><b>All-Time Earnings</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>
-      <p id='upcoming-booking-text' style='margin-top:1px'><b>Potential Earnings</b> <%= GetPrice::PotentialEarnings.new(current_user).execute %></h3>
-      <p id='upcoming-booking-text' style='margin-top:1px'><b>Monthly Earnings</b> <%= GetPrice::MonthlyEarnings.new(current_user).execute %></h3>
+    <h1 style='text-align:center' id='dashboard-cards-title'> Earnings Summary </h1>
+      <p id='dashboard-cards-text' style='margin-top:20px'><b>All-Time Earnings</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>
+      <p id='dashboard-cards-text' style='margin-top:1px'><b>Potential Earnings</b> <%= GetPrice::PotentialEarnings.new(current_user).execute %></h3>
+      <p id='dashboard-cards-text' style='margin-top:1px'><b>Monthly Earnings</b> <%= GetPrice::MonthlyEarnings.new(current_user).execute %></h3>
   </div>
 <% end %>
