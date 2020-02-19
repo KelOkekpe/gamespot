@@ -9,7 +9,7 @@ module PagesHelper
     end
     'pages/dashboard/cards/upcoming_bookings_card'
   end
-  
+
 
   def earnings_card_partial_path
     'pages/dashboard/cards/earnings_card'

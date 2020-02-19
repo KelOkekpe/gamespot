@@ -21,4 +21,14 @@ class Booking < ApplicationRecord
   # end
 
 
+
+  def pending_incoming_request
+    booking.status=='pending' && current_user.user_type =='cleaner' && booking.requested_by_id != current_user.id
+  end
+
+
+  def approved_request
+    booking.status=='approved'
+  end
+
 end

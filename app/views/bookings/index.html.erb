@@ -1,19 +1,47 @@
-<% if params[:status] == 'pending' %>
-<h1 style='text-align:center'> Pending Reservations </h1>
-<div class="row">
-  <div class='container' style='text-align:center' id='booking-container'>
-    <div class='col-sm-12' style='text-align:center' id='booking-wrapper'>
-      <%= render @bookings %>
-    </div>
-  </div>
+<div class = 'container'>
+  <% if params[:status] == 'pending' %>
+  <h1 style='text-align:center; padding-bottom:10rem'> Pending Reservations </h1>
+  <% elsif params[:status] == 'approved' %>
+  <h1 style='text-align:center; padding-bottom:10rem'> Approved Reservations </h1>
+  <% end %>
+  <table class ='table'>
+    <thead>
+      <tr>
+        <th scope ='col'>Request Type</th>
+        <th scope='col'>Unit Name</th>
+        <th scope='col'>Reservation Date</th>
+        <th scope='col'>Price</th>
+        <th scope='col'>Notes</th>
+        <th scope='col'>Approve</th>
+        <th scope='col'>Deny</th>
+        <th scope='col'>Cancel</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @bookings.each do |booking| %>
+        <tr>
+          <% if outgoing_request(booking) %>
+            <td> OUTGOING REQUEST </td>
+          <% elsif incoming_request(booking) %>
+            <td> INCOMING REQUEST </td>
+          <% end %>
+          <td><%= booking.unit.name %></td>
+          <td><%= booking.starts_at.to_date %></td>
+          <td>$<%= booking.price.to_int %> </td>
+          <td><%= truncate(booking.notes, :length => 60) %></td>
+          <% if incoming_request(booking) &&  !approved(booking) %>
+            <td><%=  button_to 'Approve', approve_booking_path(id:booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></td>
+            <td><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></td>
+          <% end %>
+          <% if outgoing_request(booking) || approved(booking) %>
+            <td></td>
+            <td></td>
+            <td><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-primary', method: :put %></td>
+          <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
 </div>
-<% elsif params[:status] == 'approved' %>
-<h1 style='text-align:center'> Approved Reservations </h1>
-<div class="row">
-  <div class='container' style='text-align:center' id='booking-container'>
-    <div class='col-sm-12' style='text-align:center' id='booking-wrapper'>
-      <%= render @bookings %>
-    </div>
-  </div>
-</div>
-<% end %>

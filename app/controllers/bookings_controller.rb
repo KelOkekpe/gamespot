@@ -8,6 +8,8 @@ class BookingsController < ApplicationController
       @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
     end
   end
+
+
   # def show
   #   @cleaner    = User.find(params[:cleaner_id])
   #   @host       = User.find(params[:host_id])
