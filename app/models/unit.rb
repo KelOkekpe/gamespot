@@ -3,5 +3,4 @@ class Unit < ApplicationRecord
 
     has_many :bookings, :class_name => 'Booking', :foreign_key => 'unit_id'
 
-
 end

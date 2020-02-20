@@ -36,20 +36,22 @@
         </tr>
       <% end %>
       <% elsif current_user.user_type == 'host' %>
-        <% @units.where(owner_id:current_user.id).each do |unit| %>
-          <tr>
-            <td><%= link_to "#{unit.name}", unit %></td>
-            <td><%= link_to "#{unit.owner.name}", unit %></td>
-            <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
-            <% if current_user.id == unit.owner.id %>
+      <% @units.where(owner_id:current_user.id).each do |unit| %>
+        <tr>
+          <td><%= link_to "#{unit.name}", unit %></td>
+          <td><%= link_to "#{unit.owner.name}", unit %></td>
+          <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
+          <% if current_user.id == unit.owner.id %>
             <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-primary btn-sm', method: :get %></td>
             <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
           <% end %>
-          </tr>
-        <% end %>
+        </tr>
+      <% end %>
+      <% end %>
     </tbody>
   </table>
+  <%= will_paginate @units %>
+
 
 
 

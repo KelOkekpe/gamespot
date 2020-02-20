@@ -3,9 +3,9 @@ class BookingsController < ApplicationController
   def index
     @user = current_user
     if @user.user_type == 'host'
-      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
+      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}").paginate(:page => params[:page], :per_page => 5)
     else @user.user_type == 'cleaner'
-      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
+      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}").paginate(:page => params[:page], :per_page => 5)
     end
   end
 

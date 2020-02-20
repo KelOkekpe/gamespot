@@ -31,6 +31,7 @@ gem 'jquery-rails'
 
 #############
 gem 'will_paginate', '>= 3.1'
+gem 'will_paginate-bootstrap'
 
 #############
 gem 'bootstrap-sass', '~> 3.4.1'
