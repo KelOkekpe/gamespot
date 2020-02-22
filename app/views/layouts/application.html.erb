@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+
     <div id='flash'>
     <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>">
@@ -21,7 +22,7 @@
 
 
 
-  <body>
+  <body style='background-color:#f3f3f3'>
 
     <%= render 'layouts/navigation' %>
     <%= yield %>

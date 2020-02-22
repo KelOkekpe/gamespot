@@ -10,7 +10,6 @@ gem "time_splitter"
 gem 'bootstrap-datepicker-rails'
 
 
-
 #simplecalendar
 gem "simple_calendar", "~> 2.0"
 
