@@ -25,7 +25,7 @@
             <% if host %>
               <td><%= link_to user.name, new_booking_path(cleaner_id: user.id, host_id: current_user.id)  %></td>
               <td><%= user.email %></td>
-              <td><%= button_to 'Book Now!', new_booking_path(cleaner_id: user.id, host_id: current_user.id), class: 'btn btn-primary btn-sm' %></td>
+              <td><%= link_to 'Book Now!', new_booking_path(cleaner_id: user.id, host_id: current_user.id), class: 'btn btn-primary btn-sm' %></td>
             <% elsif cleaner %>
               <td><%= link_to user.name, new_booking_path(cleaner_id: current_user.id, host_id: user.id)  %></td>
               <td><%= user.email %></td>

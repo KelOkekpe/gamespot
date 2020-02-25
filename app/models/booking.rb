@@ -1,11 +1,12 @@
 class Booking < ApplicationRecord
+  extend ActiveModel::Callbacks
+
   belongs_to :host, :class_name => 'User'
   belongs_to :cleaner, :class_name => 'User'
   belongs_to :unit, :class_name => 'Unit'
   belongs_to :requested_by, :class_name => 'User'
 
   validates :price, :presence => true
-
 
 
   # extend TimeSplitter::Accessors
@@ -19,6 +20,7 @@ class Booking < ApplicationRecord
   # def unit
   #   unit.name
   # end
+
 
 
 

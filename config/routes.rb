@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   put 'cancel_booking/:id', to:'bookings#cancel', as:'cancel_booking'
   # put 'bookings/:id', to:'bookings#index', as:'bookings'
 
-
+  post 'twilio/sms'
 
   get 'show_state', to: 'users#show_state', as: 'show_state'
   get 'bio', to:'users#bio', as:'bio'

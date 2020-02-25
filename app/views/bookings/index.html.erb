@@ -67,7 +67,7 @@
                 </div>
                 <% end %>
                 <% if outgoing_request(booking) || approved(booking) %>
-                  <button class='cancel'><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-warning btn-sm', method: :put %></button>
+                  <div class='cancel-button'><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-warning btn-sm', method: :put %></button>
                 <% end %>
               </div>
             </div>
@@ -77,8 +77,6 @@
     </tbody>
   </table>
   <%= will_paginate @bookings %>
-
-
 
 
 </div>

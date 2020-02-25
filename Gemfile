@@ -12,6 +12,7 @@ gem 'bootstrap-datepicker-rails'
 
 #simplecalendar
 gem "simple_calendar", "~> 2.0"
+gem 'twilio-ruby'
 
 #############
 gem 'responders', '~> 2.0'
