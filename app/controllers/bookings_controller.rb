@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
     @booking.update(status:'approved')
       if @booking.save
         flash[:success] = "Reservation Approved"
+        send_approved_booking_notification(@booking)
         redirect_to dashboard_path
       else
         flash[:error] = "Reservation could not be accepted"
@@ -80,6 +81,18 @@ class BookingsController < ApplicationController
 
   def request_message
   end
+
+  def send_approved_booking_notification(booking)
+        client = Twilio::REST::Client.new
+        user = booking.requested_by
+
+        client.messages.create(
+          from: '+14043838904',
+          to: '+14045995789',
+          body: "Hey #{user.name}, your cleaning on #{booking.starts_at.to_date} for #{booking.unit.name} has been approved! You will earn $#{booking.price}"
+        )
+  end
+
 
   private
 
