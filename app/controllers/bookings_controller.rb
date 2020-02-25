@@ -91,6 +91,8 @@ class BookingsController < ApplicationController
           to: '+14045995789',
           body: "Hey #{user.name}, your cleaning on #{booking.starts_at.to_date} for #{booking.unit.name} has been approved! You will earn $#{booking.price}"
         )
+
+
   end
 
 

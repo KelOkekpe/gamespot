@@ -1,4 +1,4 @@
 Twilio.configure do |config|
-    ENV['TWILIO_SID']
-    ENV['TWILIO_AUTH_TOKEN']
+    config.account_sid = ENV['TWILIO_SID']
+    config.auth_token = ENV['TWILIO_AUTH_TOKEN']
 end
