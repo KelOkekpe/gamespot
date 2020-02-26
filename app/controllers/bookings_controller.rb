@@ -3,9 +3,11 @@ class BookingsController < ApplicationController
   def index
     @user = current_user
     if @user.user_type == 'host'
-      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}").paginate(:page => params[:page], :per_page => 5)
+      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
+      .paginate(:page => params[:page], :per_page => 5)
     else @user.user_type == 'cleaner'
-      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}").paginate(:page => params[:page], :per_page => 5)
+      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
+      .paginate(:page => params[:page], :per_page => 5)
     end
   end
 
@@ -72,6 +74,7 @@ class BookingsController < ApplicationController
       unit_id: booking_params[:unit_id])
     if @booking.save
       flash[:success] = "Booking Created"
+      send_requested_booking_notification(@booking)
       redirect_to request_message_path
     else
       flash[:error] = "Booking Failed to Create"
@@ -83,17 +86,46 @@ class BookingsController < ApplicationController
   end
 
   def send_approved_booking_notification(booking)
-        client = Twilio::REST::Client.new
-        user = booking.requested_by
+    client = Twilio::REST::Client.new
+    user = booking.requested_by
 
-        client.messages.create(
-          from: '+14043838904',
-          to: '+14045995789',
-          body: "Hey #{user.name}, your cleaning on #{booking.starts_at.to_date} for #{booking.unit.name} has been approved! You will earn $#{booking.price}"
-        )
-
-
+    client.messages.create(
+      from: '+14043838904',
+      to: '+14045995789',
+      body: "Hey #{user.name}, your cleaning on #{booking.starts_at.strftime("%B %d/%Y")}\
+      for #{booking.unit.name} has been approved! You will earn $#{booking.price}"
+    )
   end
+
+
+  def send_requested_booking_notification(booking)
+    client = Twilio::REST::Client.new
+    if current_user.user_type == 'host'
+      user = booking.cleaner
+    elsif current_user.user_type == 'cleaner'
+      user = booking.host
+    end
+
+    if user.user_type == 'host'
+    client.messages.create(
+      from: '+14043838904',
+      to: '+14045995789',
+      body: "Hey #{user.name}, #{booking.requested_by.name} has requested to\
+       clean #{booking.unit.name}on #{booking.starts_at.strftime("%B %d %Y")}\
+       for $#{booking.price}!"
+    )
+    elsif user.user_type =='cleaner'
+      client.messages.create(
+        from: '+14043838904',
+        to: '+14045995789',
+        body: "Hey #{user.name}, #{booking.requested_by.name} has requested a\
+        cleanining for #{booking.unit.name} on #{bbooking.starts_at.strftime("%B %d %Y")}\
+        for $#{booking.price}!"
+      )
+    end
+  end
+  #interpolate url in text notifications , find out how...right now it sends as hard coded hrefm,
+  #{link_to booking.unit.name, unit_path(booking.unit.id)}
 
 
   private
