@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
       if @booking.save
         flash[:success] = "Reservation Approved"
         # send_approved_booking_notification(@booking)
-        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date, @booking.cleaner, @booking.host)
+        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date, @booking.cleaner, @booking.host, @booking.unit)
         redirect_to dashboard_path
       else
         flash[:error] = "Reservation could not be accepted"
@@ -92,7 +92,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  def new_event(start, endd, cleaner, host)
+  def new_event(start, endd, cleaner, host, unit)
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
@@ -103,7 +103,7 @@ class BookingsController < ApplicationController
       start: Google::Apis::CalendarV3::EventDateTime.new(date: start),
       end: Google::Apis::CalendarV3::EventDateTime.new(date: endd),
       attendees: [{email: host.email},{email: cleaner.email}],
-      summary: "ch - Cleaning Scheduled by #{cleaner.name}"
+      summary: "#{cleaner.name} at #{unit.name}"
     })
     service.insert_event(calendar.id, event)
 

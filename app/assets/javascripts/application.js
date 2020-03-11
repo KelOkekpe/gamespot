@@ -24,13 +24,32 @@
 //= require bootstrap-datepicker
 
 
+@calendar_list = service.list_calendar_lists
+googleCalendarId = ""
+color_array = %w[black blue red green yellow]
+
+@calendar_list.each do |cal|
+    googleCalendarId = cal.id
+    color = color_array.sample
+    color_array.delete(color)
+  end
+
+
 
 function eventCalendar() {
   return $('#calendar').fullCalendar
-  ({googleCalendarApiKey:'AIzaSyAUnPpJE_PWvr3Bqh4L5cuCcva3_AoBNP8',
-    eventSources:
-      [{googleCalendarId:'pace98u2f4pp8h8sousftnalhkp28nl9@import.calendar.google.com', color:'#FF7171', textColor:'white'},
-      {url: '/bookings.json', color:'black', textColor:'white'} ]
+  ({googleCalendarApiKey:ENV['GOOGLE_CALENDAR_API_KEY'],
+    eventSources:[
+      {
+        googleCalendarId:'kelokekpe@gmail.com', color:'#FF7171', textColor:'white'
+      },
+      {
+        url: '/bookings.json', color:'#8ac9e4', textColor:'white'
+      },
+      {
+        url:'/events.json', color:'red', textColor:'white'
+      }
+    ]
     }
   );
 };
