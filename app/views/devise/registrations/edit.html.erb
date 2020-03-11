@@ -38,6 +38,8 @@
   </div>
 <% end %>
 
+<%= link_to 'Sync Calendar', redirect_path, class: 'btn btn-primary' , id: 'dashboard-btn' %>
+
 <p id="cancel">Cancel my account</p>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

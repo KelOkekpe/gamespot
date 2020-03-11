@@ -1,0 +1,29 @@
+
+<% if current_user.user_type == 'cleaner' %>
+    <div class="col-sm-12"id="calendar-container">
+      <h3 style='font-size:2.5rem; font-weight:200'>Cleaner Calendar</h3>
+        <div id="calendar">
+          <%= month_calendar events: @event_list.items.each do |date, events| %>
+            <%= date %>
+            <% events.each do |event| %>
+              <div>
+                <% event.summary %>
+                <% event.id %>
+            <% end %>
+          <% end %>
+  </div>
+<% elsif current_user.user_type == 'host' %>
+  <div class="row">
+    <div class="col-sm-12"id="calendar-container">
+      <h3 style='font-size:2.5rem; font-weight:200'>Cleaner Calendar</h3>
+        <div id="calendar">
+          <%= month_calendar events: @event_list.items.each do |date, events| %>
+            <%= date %>
+            <% events.each do |event| %>
+              <div>
+                <% event.summary %>
+                <% event.id %>
+            <% end %>
+          <% end %>
+  </div>
+<% end %>

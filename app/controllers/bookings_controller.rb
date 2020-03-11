@@ -1,22 +1,31 @@
+require "google/apis/calendar_v3"
 class BookingsController < ApplicationController
-  #The index controller shows a list of different Bookings
+  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+
+
   def index
-    @user = current_user
-    if @user.user_type == 'host'
-      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
-      .paginate(:page => params[:page], :per_page => 5)
-    else @user.user_type == 'cleaner'
-      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
-      .paginate(:page => params[:page], :per_page => 5)
+    if current_user.user_type =='host'
+      @bookings = Booking.where(host_id:current_user.id)
+    else current_user.user_type =='cleaner'
+      @bookings = Booking.where(cleaner_id:current_user.id)
     end
   end
 
+  def booking_table
+    @user = current_user
+      if @user.user_type == 'host'
+        @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
+        .paginate(:page => params[:page], :per_page => 5)
+      else @user.user_type == 'cleaner'
+        @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
+        .paginate(:page => params[:page], :per_page => 5)
+      end
+  end
 
-  # def show
-  #   @cleaner    = User.find(params[:cleaner_id])
-  #   @host       = User.find(params[:host_id])
-  #   @booking    = Booking.new
-  # end
+
+  def show
+  end
+
   def new
     @cleaner    = User.find(params[:cleaner_id])
     @host       = User.find(params[:host_id])
@@ -31,7 +40,8 @@ class BookingsController < ApplicationController
     @booking.update(status:'approved')
       if @booking.save
         flash[:success] = "Reservation Approved"
-        send_approved_booking_notification(@booking)
+        # send_approved_booking_notification(@booking)
+        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date, @booking.cleaner, @booking.host)
         redirect_to dashboard_path
       else
         flash[:error] = "Reservation could not be accepted"
@@ -74,7 +84,7 @@ class BookingsController < ApplicationController
       unit_id: booking_params[:unit_id])
     if @booking.save
       flash[:success] = "Booking Created"
-      send_requested_booking_notification(@booking)
+      # send_requested_booking_notification(@booking)
       redirect_to request_message_path
     else
       flash[:error] = "Booking Failed to Create"
@@ -82,8 +92,28 @@ class BookingsController < ApplicationController
     end
   end
 
+  def new_event(start, endd, cleaner, host)
+    client = Signet::OAuth2::Client.new(client_options)
+    client.update!(session[:authorization])
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = client
+    calendar = service.get_calendar(:primary)
+    today = Date.today
+    event = Google::Apis::CalendarV3::Event.new({
+      start: Google::Apis::CalendarV3::EventDateTime.new(date: start),
+      end: Google::Apis::CalendarV3::EventDateTime.new(date: endd),
+      attendees: [{email: host.email},{email: cleaner.email}],
+      summary: "ch - Cleaning Scheduled by #{cleaner.name}"
+    })
+    service.insert_event(calendar.id, event)
+
+  end
+
+
   def request_message
   end
+
+
 
   def send_approved_booking_notification(booking)
     client = Twilio::REST::Client.new
@@ -119,7 +149,7 @@ class BookingsController < ApplicationController
         from: '+14043838904',
         to: '+14045995789',
         body: "Hey #{user.name}, #{booking.requested_by.name} has requested a\
-        cleanining for #{booking.unit.name} on #{bbooking.starts_at.strftime("%B %d %Y")}\
+        cleanining for #{booking.unit.name} on #{booking.starts_at.strftime("%B %d %Y")}\
         for $#{booking.price}!"
       )
     end
@@ -130,9 +160,15 @@ class BookingsController < ApplicationController
 
   private
 
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
   def booking_params
     params.require(:booking).permit(:notes, :cleaner_id, :host_id, :requested_by_id,
        :starts_at, :price, :unit_id, :utf8, :authenticity_token, :commit)
   end
+
+
 
 end

@@ -1,0 +1,80 @@
+<div class = 'centered-table' style='top:5%;'>
+  <% if params[:status] == 'pending' %>
+    <h1 style='text-align:center; padding-bottom:5rem'> Pending Reservations </h1>
+  <% elsif params[:status] == 'approved' %>
+    <h1 style='text-align:center; padding-bottom:10rem'> Approved Reservations </h1>
+  <% end %>
+
+  <table class ='table'>
+    <thead>
+      <tr>
+        <th scope ='col'>Request Type</th>
+        <th scope='col'>Unit Name</th>
+        <th scope='col'>Reservation Date</th>
+        <th scope='col'>Price</th>
+        <th scope='col'>Notes</th>
+        <th scope='col'>Approve</th>
+        <th scope='col'>Deny</th>
+        <th scope='col'>Cancel</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @bookings.each do |booking| %>
+        <tr>
+          <% if outgoing_request(booking) %>
+            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+              Outgoing Request
+            </button> </td>
+          <% elsif incoming_request(booking) %>
+            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+              Incoming Request
+            </button> </td>
+          <% end %>
+          <td class='unit-name'><%= booking.unit.name %></td>
+          <td class='reservation-date'><%= booking.starts_at.to_date %></td>
+          <td class='booking-price'>$<%= booking.price.to_int %> </td>
+          <td class='booking-notes'><%= truncate(booking.notes, :length => 60) %></td>
+          <% if incoming_request(booking) &&  !approved(booking) %>
+            <td class='approve'><%= button_to 'Approve', approve_booking_path(id:booking.id), id:'booking-btn', class: 'btn btn-success btn-sm', method: :put %></td>
+            <td class='deny'><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-danger btn-sm', method: :put %></td>
+          <% end %>
+          <% if outgoing_request(booking) || approved(booking) %>
+            <td></td>
+            <td></td>
+            <td class='cancel'><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-warning btn-sm', method: :put %></td>
+          <% end %>
+        </tr>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><%= booking.unit.name %></h4>
+
+              </div>
+              <div class="modal-body">
+                <p class='reservation-date' style='text-align:center'><%= booking.starts_at.to_date %></p>
+                <p class='booking-notes' style='text-align:center'><%= truncate(booking.notes, :length => 500) %></p>
+              </div>
+              <div class="modal-footer">
+                <% if incoming_request(booking) &&  !approved(booking) %>
+                <div class='row'>
+                  <div class='approve-button col-sm-6' style='width:0; left:25%' '><%= button_to 'Approve', approve_booking_path(id:booking.id), id:'booking-btn', class: 'btn btn-success btn-sm', method: :put %></div>
+                  <div class='deny-button col-sm-6' style='width:0; left:50%'><%= button_to 'Deny', deny_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-danger btn-sm', method: :put %></div>
+                </div>
+                <% end %>
+                <% if outgoing_request(booking) || approved(booking) %>
+                  <div class='cancel-button'><%= button_to 'Cancel Request', cancel_booking_path(id: booking.id), id:'booking-btn', class: 'btn btn-warning btn-sm', method: :put %></button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @bookings %>
+    <div id="calendar"></div>
+</div>

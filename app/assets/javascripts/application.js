@@ -15,11 +15,33 @@
 //= require turbolinks
 //= require_tree
 //= require jquery
+//= require moment
+//= require fullcalendar
+//= require fullcalendar/gcal
 //= require bootstrap
  //= require bootstrap-sprockets
 //= require bootstrap-modal
 //= require bootstrap-datepicker
-//= require moment
 
 
-$('#calendar').fullCalendar({});
+
+function eventCalendar() {
+  return $('#calendar').fullCalendar
+  ({googleCalendarApiKey:'AIzaSyAUnPpJE_PWvr3Bqh4L5cuCcva3_AoBNP8',
+    eventSources:
+      [{googleCalendarId:'pace98u2f4pp8h8sousftnalhkp28nl9@import.calendar.google.com', color:'#FF7171', textColor:'white'},
+      {url: '/bookings.json', color:'black', textColor:'white'} ]
+    }
+  );
+};
+
+
+function clearCalendar() {
+  $('#calendar').fullCalendar('delete');
+  $('#calendar').html('');
+};
+
+$(document).on('turbolinks:load', function(){
+  eventCalendar();
+});
+$(document).on('turbolinks:before-cache', clearCalendar);

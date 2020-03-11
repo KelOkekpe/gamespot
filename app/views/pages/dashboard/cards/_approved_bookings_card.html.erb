@@ -1,4 +1,4 @@
 <div class="col-sm-3"id="trial">
   <h1 style='text-align:center; color:#ff7171' id='total-bookings'><%= BookingDecorator.new(@bookings).approved(current_user) %></h1>
-  <h3 style='text-align:center'><b><%= link_to 'Approved Reservations', bookings_path(status: 'approved') %> </b></h3>
+  <h3 style='text-align:center'><b><%= link_to 'Approved Reservations', booking_table_path(status: 'approved') %> </b></h3>
 </div>
