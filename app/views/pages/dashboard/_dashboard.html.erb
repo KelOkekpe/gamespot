@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-      <%= render calendar_card_partial_path %>
+    <%= render '/events/calendar' %>
     </div>
   </div>
 <% elsif current_user.user_type == 'cleaner' %>
@@ -37,8 +37,7 @@
     </div>
 
     <div class="row">
-      <%= render calendar_card_partial_path %>
-    
+      <%= render '/events/calendar' %>
     </div>
 
   </div>
