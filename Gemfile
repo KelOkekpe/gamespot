@@ -41,6 +41,7 @@ gem 'jquery-rails'
 gem 'will_paginate', '>= 3.1'
 gem 'will_paginate-bootstrap'
 
+gem 'gon', '~> 6.2'
 #############
 gem 'bootstrap-sass', '~> 3.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

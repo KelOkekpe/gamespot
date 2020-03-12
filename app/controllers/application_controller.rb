@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :assign_env_variables
 
   protect_from_forgery with: :exception
 
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     client = Signet::OAuth2::Client.new(client_options)
     client.authorization_uri.to_s
+  end
+
+  def assign_env_variables
+    gon.google_calendar_api_key = ENV["GOOGLE_CALENDAR_API_KEY"]
   end
 
   protected
