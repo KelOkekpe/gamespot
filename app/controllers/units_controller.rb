@@ -10,11 +10,28 @@ class UnitsController < ApplicationController
   # GET /units/1
   # GET /units/1.json
   def show
+    client = Signet::OAuth2::Client.new(client_options)
+    client.update!(session[:authorization])
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = client
+    # @calendar = service.get_calendar(:primary)
+    @calendar_list = service.list_calendar_lists
+    @calendar = service.get_calendar(:primary).id
+
+    @list = @calendar_list.items.map do |c|
+      c.id
+    end
+
+  rescue Google::Apis::AuthorizationError
+    response = client.refresh!
+    session[:authorization] = session[:authorization].merge(response)
+    retry
   end
 
   # GET /units/new
   def new
     @unit = Unit.new
+    return show
   end
 
   # GET /units/1/edit
@@ -24,7 +41,15 @@ class UnitsController < ApplicationController
   # POST /units
   # POST /units.json
   def create
-    @unit = Unit.new(unit_params)
+    @unit = Unit.new(
+      name: unit_params[:name],
+      calendar_id: unit_params[:calendar_id],
+      owner_id: unit_params[:owner_id],
+      address: unit_params[:address],
+      city: unit_params[:city],
+      state: unit_params[:state],
+      zip_code: unit_params[:zip_code]
+    )
 
     respond_to do |format|
       if @unit.save
@@ -36,6 +61,10 @@ class UnitsController < ApplicationController
       end
     end
   end
+
+
+
+
 
   # PATCH/PUT /units/1
   # PATCH/PUT /units/1.json
@@ -69,6 +98,7 @@ class UnitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_params
-      params.fetch(:unit, {})
+      params.require(:unit).permit(:name, :calendar_id, :address, :city, :state,
+         :zip_code, :owner_id, :utf8, :authenticity_token, :commit)
     end
 end

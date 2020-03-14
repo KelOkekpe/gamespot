@@ -19,12 +19,11 @@ class EventsController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = client
     # @calendar = service.get_calendar(:primary)
-    @calendar_list = service.list_calendar_lists
+    @calendar_list = service.list_calendar_lists.items
 
-    @list = @calendar_list.items.map do |c|
-      c.id
-    end
-
+    # @list = @calendar_list.items.map do |c|
+    #   c.id
+    # end
   rescue Google::Apis::AuthorizationError
     response = client.refresh!
     session[:authorization] = session[:authorization].merge(response)

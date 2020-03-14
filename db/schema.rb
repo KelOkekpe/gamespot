@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_185556) do
+ActiveRecord::Schema.define(version: 2020_03_13_210026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_185556) do
     t.integer "unit_id"
     t.decimal "price"
     t.integer "requested_by_id"
+    t.string "event_id"
     t.index ["cleaner_id"], name: "index_bookings_on_cleaner_id"
     t.index ["host_id"], name: "index_bookings_on_host_id"
   end
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_185556) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.string "calendar_id"
   end
 
   create_table "users", force: :cascade do |t|

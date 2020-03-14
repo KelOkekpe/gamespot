@@ -1,5 +1,24 @@
-<h1>New Unit</h1>
+<div class = 'container' style='width:70rem;'>
+  <h1 style='text-align:center'>New Unit</h1>
+  <%= bootstrap_form_for @unit do |f| %>
+    <%= f.text_area :name,
+                    rows: 1,
+                    minlength: 3,
+                    maxlength: 30,
+                    placeholder: 'Give your unit a name!',
+                    class: 'form-control' %>
 
-<%= render 'form', unit: @unit %>
+    <%= f.select(:calendar_id,  @list) %>
+    <%= f.text_field :address, value: @address %>
+    <%= f.text_field :city, value: @city %>
+    <%= f.select(:state, options_for_select(us_states, "GA"), value: @state) %>
+    <%= f.text_field :zip_code, value: @zip_code %>
 
-<%= link_to 'Back', units_path %>
+
+    <%= f.hidden_field :owner_id, value: current_user.id %>
+
+    <%= f.submit "Create Unit!", id:'client-btn', class: 'form-control btn btn-primary'  %>
+  <% end %>
+  <%= link_to 'Back', units_path %>
+
+</div>

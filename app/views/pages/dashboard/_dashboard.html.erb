@@ -1,33 +1,22 @@
-<% if current_user.user_type == 'host' %>
-  <div class='row'><h2 style='text-align:center; width:1080px; color:black;' id='dashboard-title'>Host Dashboard</h2></div>
-    <div class="row" id="tabs" style='text-align:center; width:1080px'>
+<% if host %>
+  <div class='row'><h2 id='dashboard-title'>Host Dashboard</h2></div>
+<% elsif cleaner %>
+  <div class='row'><h2 id='dashboard-title'>Cleaner Dashboard</h2></div>
+<% end %>
+
+    <div class="row" id="tabs">
       <div class="col-sm-3"> <%= link_to 'Listings', units_path, :id=>'listings' %> </div>
+    <% if host %>
       <div class="col-sm-2"> <%= link_to 'Cleaners', user_table_path, :id=>'users' %> </div>
-      <div class="col-sm-2"> <%= link_to 'Earnings', dashboard_path, :id=>'earnings' %> </div>
-      <div class="col-sm-2"> <%= link_to 'History', dashboard_path, :id=>'history' %> </div>
-      <div class="col-sm-3"> <%= link_to 'FAQ', dashboard_path, :id=>'faq' %> </div>
-    </div>
-
-    <div class="row" id="row1">
-      <%= render upcoming_bookings_card_partial_path %>
-      <%= render earnings_card_partial_path %>
-      <%= render pending_bookings_card_partial_path %>
-      <%= render approved_bookings_card_partial_path %>
-    </div>
-
-    <div class="row">
-    <%= render '/events/calendar' %>
-    </div>
-  </div>
-<% elsif current_user.user_type == 'cleaner' %>
-  <div class='row'><h2 style='text-align:center; width:1080px; color:black;' id='dashboard-title'>Cleaner Dashboard</h2></div>
-    <div class="row" id="tabs" style='text-align:center; width:1080px'>
-      <div class="col-sm-3"> <%= link_to 'Listings', units_path, :id=>'listings' %> </div>
+    <% elsif cleaner %>
       <div class="col-sm-2"> <%= link_to 'Hosts', user_table_path, :id=>'users' %> </div>
+    <% end %>
       <div class="col-sm-2"> <%= link_to 'Earnings', dashboard_path, :id=>'earnings' %> </div>
       <div class="col-sm-2"> <%= link_to 'History', dashboard_path, :id=>'history' %> </div>
       <div class="col-sm-3"> <%= link_to 'FAQ', dashboard_path, :id=>'faq' %> </div>
     </div>
+
+
 
     <div class="row" id="row1">
       <%= render upcoming_bookings_card_partial_path %>
@@ -39,6 +28,4 @@
     <div class="row">
       <%= render '/events/calendar' %>
     </div>
-
   </div>
-<% end %>

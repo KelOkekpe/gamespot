@@ -28,5 +28,4 @@ module BookingsHelper
     current_user.user_type == 'cleaner'
   end
 
-  
 end

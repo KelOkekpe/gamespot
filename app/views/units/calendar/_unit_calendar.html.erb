@@ -1,0 +1,46 @@
+<script>
+function eventCalendar(){
+  return $('#calendar').fullCalendar
+  ({googleCalendarApiKey: gon.google_calendar_api_key,
+    eventSources: getEventSources(),
+    }
+  );
+};
+
+function clearCalendar() {
+  $('#calendar').fullCalendar('delete');
+  $('#calendar').html('');
+};
+
+$(document).on('turbolinks:load', function(){
+  eventCalendar();
+});
+$(document).on('turbolinks:before-cache', clearCalendar);
+
+
+function getEventSources(){
+  const calendarList = <%= raw @list %>
+  const idKeyArray = ['googleCalendarId','googleCalendarId']
+  const colorKeyArray = ['color','color']
+  const textColorKeyArray = ['textColor','textColor']
+
+  const unitIds = [ '<%= raw @unit.calendar_id %>' , '<%= raw @calendar %>' ]
+  const colorStyles = ['#FF7171','#8ac9e4']
+  const textColorStyles = ['white','white']
+
+  eventSources = []
+
+  for(i=0; i < idKeyArray.length; i++) {
+    var obj = {}
+    obj[idKeyArray[i]] = unitIds[i]
+    obj[colorKeyArray[i]] = colorStyles[i]
+    obj[textColorKeyArray[i]] = textColorStyles[i]
+    eventSources.push(obj);
+  }
+  return eventSources
+};
+</script>
+
+<div class="col-sm-12"id="calendar-container">
+  <div id="calendar" style='padding:20px'></div>
+</div>s

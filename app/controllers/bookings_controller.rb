@@ -2,7 +2,6 @@ require "google/apis/calendar_v3"
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
-
   def index
     if current_user.user_type =='host'
       @bookings = Booking.where(host_id:current_user.id)
@@ -41,7 +40,8 @@ class BookingsController < ApplicationController
       if @booking.save
         flash[:success] = "Reservation Approved"
         # send_approved_booking_notification(@booking)
-        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date, @booking.cleaner, @booking.host, @booking.unit)
+        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date,
+        @booking.cleaner, @booking.host, @booking.unit, @booking.event_id)
         redirect_to dashboard_path
       else
         flash[:error] = "Reservation could not be accepted"
@@ -66,12 +66,22 @@ class BookingsController < ApplicationController
     @booking.update(status:'cancelled')
       if @booking.save
         flash[:success] = "Reservation Cancelled"
+        call_delete_event(@booking.event_id)
         redirect_to dashboard_path
       else
         flash[:error] = "Reservation could not be cancelled"
         redirect_to root_path
       end
   end
+
+  # def destroy_bookings_and_events
+  #   @bookings = Booking.all
+  #
+  #   @bookings.each do |b|
+  #     call_delete_event(b.event_id)
+  #     b.destroy
+  #   end
+  # end
 
   def create
     @user = current_user
@@ -92,7 +102,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  def new_event(start, endd, cleaner, host, unit)
+  def new_event(start, endd, cleaner, host, unit, event_id)
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])
     service = Google::Apis::CalendarV3::CalendarService.new
@@ -103,10 +113,18 @@ class BookingsController < ApplicationController
       start: Google::Apis::CalendarV3::EventDateTime.new(date: start),
       end: Google::Apis::CalendarV3::EventDateTime.new(date: endd),
       attendees: [{email: host.email},{email: cleaner.email}],
-      summary: "#{cleaner.name} at #{unit.name}"
+      summary: "#{cleaner.name} at #{unit.name} - #{event_id}",
+      id: event_id
     })
     service.insert_event(calendar.id, event)
+  end
 
+  def call_delete_event(event)
+    client = Signet::OAuth2::Client.new(client_options)
+    client.update!(session[:authorization])
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = client
+    service.delete_event(:primary, event)
   end
 
 

@@ -1,11 +1,11 @@
-<% if current_user.user_type == 'host' %>
+<% if host %>
   <div class="col-sm-3" id="trial">
     <h1 style='text-align:center; color:#ff7171' id='dashboard-cards-title'> Earnings Summary </h1>
       <p id='dashboard-cards-text' style='margin-top:20px'><b>All-Time Paid Out</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>
       <p id='dashboard-cards-text' style='margin-top:1px'><b>Potential Payouts</b> <%= GetPrice::PotentialEarnings.new(current_user).execute %></h3>
       <p id='dashboard-cards-text' style='margin-top:1px'><b>Monthly Payouts</b> <%= GetPrice::MonthlyEarnings.new(current_user).execute %></h3>
   </div>
-<% elsif current_user.user_type == 'cleaner' %>
+<% elsif cleaner %>
   <div class="col-sm-3"id="trial">
     <h1 style='text-align:center; color:#ff7171' id='dashboard-cards-title'> Earnings Summary </h1>
       <p id='dashboard-cards-text' style='margin-top:20px'><b>All-Time Earnings</b> <%= GetPrice::TotalEarnings.new(current_user).execute %></h3>

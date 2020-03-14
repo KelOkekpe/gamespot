@@ -12,8 +12,10 @@
 
 #dashboard-title{
   margin-top: 5rem;
-  color:#de3e8e;
+  color:black;
   font-weight:200;
+  text-align:center;
+  width:1080px;
 }
 
 
@@ -21,6 +23,8 @@
 #tabs{
   border: solid 1px #ececec;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.9) inset;
+  text-align:center;
+  width:1080px;
 }
 
 #listings{
@@ -93,6 +97,7 @@
 }
 
 #calendar-container{
+  padding: 20px;
   background-color: white;
   border-radius:5px;
   box-shadow: 0 1px 3px 0 #c2d2dd;
@@ -137,6 +142,7 @@ h2{
 
 
 .centered-table {
+  padding:20px;
   background-color: white;
   border-radius:5px;
   box-shadow: 0 1px 3px 0 #c2d2dd;
