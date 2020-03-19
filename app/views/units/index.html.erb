@@ -1,3 +1,10 @@
+<script>
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
+</script>
 
 <div style='text-align:center'>
 <%= link_to 'Back', dashboard_path %></div>
@@ -26,13 +33,6 @@
           <td><%= link_to "#{unit.name}", unit %></td>
           <td><%= link_to "#{unit.owner.name}", unit %></td>
           <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
-          <% if current_user.id == unit.owner.id %>
-            <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-primary btn-sm', method: :get %></td>
-            <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% elsif current_user.id != unit.owner.id %>
-            <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-default btn-sm disabled', method: :get %></td>
-            <td><%= button_to 'Destroy', unit, class: 'btn btn-default btn-sm disabled', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
         </tr>
       <% end %>
       <% elsif current_user.user_type == 'host' %>
@@ -43,7 +43,7 @@
           <td><%= link_to "#{unit.city},#{unit.state}", unit %></td>
           <% if current_user.id == unit.owner.id %>
             <td><%= button_to 'Edit', edit_unit_path(unit), class: 'btn btn-primary btn-sm', method: :get %></td>
-            <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= button_to 'Destroy', unit, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure? This will remove this unit and un-sync its reservations from your main calendar' } %></td>
           <% end %>
         </tr>
       <% end %>

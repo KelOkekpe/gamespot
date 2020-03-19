@@ -22,7 +22,7 @@ class UnitsController < ApplicationController
       [c.summary_override, c.id]
     end
 
-    # @bookings = Booking.select do |booking|
+    # @unit_cleanings = Booking.select do |booking|
     #   booking.unit.calendar_id == params[:calendar_id]
     # end
     # render json: @bookings
@@ -68,9 +68,6 @@ class UnitsController < ApplicationController
   end
 
 
-
-
-
   # PATCH/PUT /units/1
   # PATCH/PUT /units/1.json
   def update
@@ -88,11 +85,25 @@ class UnitsController < ApplicationController
   # DELETE /units/1
   # DELETE /units/1.json
   def destroy
+    delete_calendar
+
     @unit.destroy
     respond_to do |format|
       format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def delete_calendar
+    @unit = Unit.find(params[:id])
+
+    client = Signet::OAuth2::Client.new(client_options)
+    client.update!(session[:authorization])
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = client
+    # client = service.get_calendar(@unit.calendar_id)
+    # client = service.list_calendar_lists
+    service.delete_calendar_list(@unit.calendar_id)
   end
 
   private

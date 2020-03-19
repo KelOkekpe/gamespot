@@ -1,1 +1,10 @@
-hello
+<div class='container'>
+  <h1 style='text-align:center'><%= @booking.unit.name %></h1>
+  <h1 style='text-align:center'><%= @booking.starts_at %></h1>
+  <h1 style='text-align:center'><%= @booking.id %></h1>
+  <h1 style='text-align:center'><%= @booking.notes %></h1>
+  <h1 style='text-align:center'><%= @booking.host.name %></h1>
+  <h1 style='text-align:center'><%= @booking.cleaner.name %></h1>
+  <h1 style='text-align:center'><%= @booking.unit.name %></h1>
+  <td><div style='text-align:center'><%= button_to 'Destroy', @booking, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure? This will delete the cleaning and remove it from your calendar' } %></div></td>
+</div>

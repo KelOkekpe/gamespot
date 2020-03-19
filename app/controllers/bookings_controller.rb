@@ -112,6 +112,16 @@ class BookingsController < ApplicationController
     service.insert_event(calendar.id, event)
   end
 
+  def destroy
+    call_delete_event(@booking.event_id)
+
+    @booking.destroy
+    respond_to do |format|
+      format.html { redirect_to units_url, notice: 'Booking was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   def call_delete_event(event)
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])

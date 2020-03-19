@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
     service.authorization = client
   end
 
+  
+
   protected
 
     def configure_permitted_parameters

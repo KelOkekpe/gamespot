@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/events/:calendar_id', to: 'bookings#new_event', as: 'new_event', calendar_id: /[^\/]+/
   # post 'destroy_bookings_and_events', to:'bookings#destroy_bookings_and_events', as: 'destroy_bookings_and_events'
 
+  post 'delete_calendar', to:'units#delete_calendar', as:'delete_calendar'
 
   post 'twilio/sms'
 
