@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag "legend" %>
+
+
 <% if host %>
   <div class='row'><h2 id='dashboard-title'>Host Dashboard</h2></div>
 <% elsif cleaner %>
@@ -26,6 +29,8 @@
     </div>
 
     <div class="row">
+    <div id='calendar-container'>
+      <%= render 'pages/dashboard/cards/legend' %>
       <%= render '/events/calendar' %>
     </div>
-  </div>
+    </div>

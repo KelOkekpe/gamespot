@@ -19,8 +19,13 @@ class UnitsController < ApplicationController
     @calendar = service.get_calendar(:primary).id
 
     @list = @calendar_list.items.map do |c|
-      c.id
+      [c.summary_override, c.id]
     end
+
+    # @bookings = Booking.select do |booking|
+    #   booking.unit.calendar_id == params[:calendar_id]
+    # end
+    # render json: @bookings
 
   rescue Google::Apis::AuthorizationError
     response = client.refresh!

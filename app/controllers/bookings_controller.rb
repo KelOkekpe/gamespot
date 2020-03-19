@@ -12,15 +12,14 @@ class BookingsController < ApplicationController
 
   def booking_table
     @user = current_user
-      if @user.user_type == 'host'
-        @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
-        .paginate(:page => params[:page], :per_page => 5)
-      else @user.user_type == 'cleaner'
-        @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
-        .paginate(:page => params[:page], :per_page => 5)
-      end
+    if @user.user_type == 'host'
+      @bookings = Booking.where(host_id:@user.id, status: "#{params[:status]}")
+      .paginate(:page => params[:page], :per_page => 5)
+    else @user.user_type == 'cleaner'
+      @bookings = Booking.where(cleaner_id:@user.id, status: "#{params[:status]}")
+      .paginate(:page => params[:page], :per_page => 5)
+    end
   end
-
 
   def show
   end
@@ -31,67 +30,61 @@ class BookingsController < ApplicationController
     @booking    = Booking.new
     @units      = @host.units.map{|unit| unit}
     @price      = @booking.price
-    @starts_at = params[:starts_at]
+    @starts_at  = params[:starts_at]
   end
 
   def approve
     @booking = Booking.find(params[:id])
     @booking.update(status:'approved')
-      if @booking.save
-        flash[:success] = "Reservation Approved"
-        # send_approved_booking_notification(@booking)
-        new_event(@booking.starts_at.to_date,@booking.starts_at.to_date,
-        @booking.cleaner, @booking.host, @booking.unit, @booking.event_id)
-        redirect_to dashboard_path
-      else
-        flash[:error] = "Reservation could not be accepted"
-        redirect_to root_path
-      end
+    if @booking.save
+      flash[:success] = "Reservation Approved"
+      # send_approved_booking_notification(@booking)
+      new_event(@booking.starts_at.to_date,@booking.starts_at.to_date,
+      @booking.cleaner, @booking.host, @booking.unit, @booking.event_id)
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Reservation could not be accepted"
+      redirect_to root_path
+    end
   end
 
   def deny
     @booking = Booking.find(params[:id])
     @booking.update(status:'denied')
-      if @booking.save
-        flash[:success] = "Reservation Denied"
-        redirect_to dashboard_path
-      else
-        flash[:error] = "Reservation could not be denied"
-        redirect_to root_path
-      end
+    if @booking.save
+      flash[:success] = "Reservation Denied"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Reservation could not be denied"
+      redirect_to root_path
+    end
   end
 
   def cancel
     @booking = Booking.find(params[:id])
     @booking.update(status:'cancelled')
-      if @booking.save
-        flash[:success] = "Reservation Cancelled"
-        call_delete_event(@booking.event_id)
-        redirect_to dashboard_path
-      else
-        flash[:error] = "Reservation could not be cancelled"
-        redirect_to root_path
-      end
+    if @booking.save
+      flash[:success] = "Reservation Cancelled"
+      call_delete_event(@booking.event_id)
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Reservation could not be cancelled"
+      redirect_to root_path
+    end
   end
 
-  # def destroy_bookings_and_events
-  #   @bookings = Booking.all
-  #
-  #   @bookings.each do |b|
-  #     call_delete_event(b.event_id)
-  #     b.destroy
-  #   end
-  # end
 
   def create
     @user = current_user
-    @booking = Booking.new(notes: booking_params[:notes],
+    @booking = Booking.new(
+      notes: booking_params[:notes],
       host_id: booking_params[:host_id],
       cleaner_id: booking_params[:cleaner_id],
       requested_by_id: booking_params[:requested_by_id],
       starts_at: booking_params[:starts_at],
       price: booking_params[:price],
-      unit_id: booking_params[:unit_id])
+      unit_id: booking_params[:unit_id]
+    )
     if @booking.save
       flash[:success] = "Booking Created"
       # send_requested_booking_notification(@booking)
@@ -127,11 +120,8 @@ class BookingsController < ApplicationController
     service.delete_event(:primary, event)
   end
 
-
   def request_message
   end
-
-
 
   def send_approved_booking_notification(booking)
     client = Twilio::REST::Client.new
@@ -144,7 +134,6 @@ class BookingsController < ApplicationController
       for #{booking.unit.name} has been approved! You will earn $#{booking.price}"
     )
   end
-
 
   def send_requested_booking_notification(booking)
     client = Twilio::REST::Client.new
@@ -172,9 +161,6 @@ class BookingsController < ApplicationController
       )
     end
   end
-  #interpolate url in text notifications , find out how...right now it sends as hard coded hrefm,
-  #{link_to booking.unit.name, unit_path(booking.unit.id)}
-
 
   private
 

@@ -8,7 +8,7 @@
                     placeholder: 'Give your unit a name!',
                     class: 'form-control' %>
 
-    <%= f.select(:calendar_id,  @list) %>
+    <%= f.select(:calendar_id, @list) %>
     <%= f.text_field :address, value: @address %>
     <%= f.text_field :city, value: @city %>
     <%= f.select(:state, options_for_select(us_states, "GA"), value: @state) %>

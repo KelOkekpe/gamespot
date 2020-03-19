@@ -3,7 +3,13 @@ function eventCalendar(){
   return $('#calendar').fullCalendar
   ({googleCalendarApiKey: gon.google_calendar_api_key,
     eventSources: getEventSources(),
-    }
+  }   //to show eventSources from function, i have to remove the second
+     // array item in UnitIds, thats the primary calendar.. im not longer going to
+    // display events from primary because that persists across each calendar
+   // instead I am going to filter by bookings.unit.calendar_id == params[:calendar_id]
+  // this was done in the controller... then I'll add 'events:' to fullcalendar return function
+ // these events will take @bookings and iterate and return the booking and required params..
+ // must format as hash or array. look at fullcalendar docs.
   );
 };
 
@@ -17,24 +23,22 @@ $(document).on('turbolinks:load', function(){
 });
 $(document).on('turbolinks:before-cache', clearCalendar);
 
-
 function getEventSources(){
-  const calendarList = <%= raw @list %>
-  const idKeyArray = ['googleCalendarId','googleCalendarId']
-  const colorKeyArray = ['color','color']
-  const textColorKeyArray = ['textColor','textColor']
+  const idKey = 'googleCalendarId'
+  const colorKey = 'color'
+  const textColorKey = 'textColor'
 
-  const unitIds = [ '<%= raw @unit.calendar_id %>' , '<%= raw @calendar %>' ]
-  const colorStyles = ['#FF7171','#8ac9e4']
-  const textColorStyles = ['white','white']
+  const unitIds = [ '<%= raw @unit.calendar_id %>' ]
+  const colorStyles = ['#FF7171']
+  const textColorStyles = ['white']
 
   eventSources = []
 
-  for(i=0; i < idKeyArray.length; i++) {
+  for(i=0; i < unitIds.length; i++) {
     var obj = {}
-    obj[idKeyArray[i]] = unitIds[i]
-    obj[colorKeyArray[i]] = colorStyles[i]
-    obj[textColorKeyArray[i]] = textColorStyles[i]
+    obj[idKey] = unitIds[i]
+    obj[colorKey] = colorStyles[i]
+    obj[textColorKey] = textColorStyles[i]
     eventSources.push(obj);
   }
   return eventSources
@@ -43,4 +47,4 @@ function getEventSources(){
 
 <div class="col-sm-12"id="calendar-container">
   <div id="calendar" style='padding:20px'></div>
-</div>s
+</div>

@@ -1,0 +1,12 @@
+<div class='my-legend'>
+<div class='legend-title'>Your Units</div>
+<div class='legend-scale'>
+  <ul class='legend-labels'>
+  <% i = 1 %>
+    <% while i < @legend_array.length %>
+     <li><span style="background:<%= @legend_array[i][:color] %>"></span><%= @legend_array[i][:title] %></li>
+     <% i += 1 %>
+  <% end %>
+  </ul>
+</div>
+</div>

@@ -1,0 +1,46 @@
+<script>
+function fillCalendarLegend(){
+  const calendarList = <%= raw @list %>
+  const titleKeyArray = calendarList.map(cal => {
+  return 'title'
+  })
+  const colorKeyArray = calendarList.map(cal => {
+  return 'color'
+  })
+
+  const calendarSummarys = calendarList.map(cal => {
+    return cal
+  })
+
+  const colorStyles = ['#FF7171', '#ade8ad','#bd95ff', '#8ac9e4','#fffb92', '#752323', '538a31', '#135c6d', '#ffa2c4','f6edff' ]
+
+  legendArray = []
+
+  for(i=0; i < idKeyArray.length; i++) {
+    var obj = {}
+    obj[titleKeyArray[i]] = calendarSummarys[i]
+    obj[colorKeyArray[i]] = colorStyles[i]
+    legendArray.push(obj);
+  }
+  return legendArray
+};
+</script>
+
+
+
+<div class='my-legend'>
+<div class='legend-title'>The Title or Explanation of your Map</div>
+<div class='legend-scale'>
+  <ul class='legend-labels'>
+    <%= i = 0 %>
+    <%= while i < legendArray.count %>
+    <li><span style='background:<%= legendArray[i][1] %>;'></span><%= legendArray[i][0] %></li>
+  </ul>
+</div>
+<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>
+</div>
+
+
+
+
+#make a new controller endpoint that returns @list as a list of calendar override_summarys

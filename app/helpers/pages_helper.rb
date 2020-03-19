@@ -9,7 +9,6 @@ module PagesHelper
     'pages/dashboard/cards/upcoming_bookings_card'
   end
 
-
   def earnings_card_partial_path
     'pages/dashboard/cards/earnings_card'
   end
@@ -28,6 +27,10 @@ module PagesHelper
 
   def dashboard_helper_path
      render 'pages/dashboard/dashboard'
+  end
+
+  def legend_helper_path
+    render 'pages/dashboard/cards/legend'
   end
 
 end
