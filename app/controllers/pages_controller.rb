@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   def index
   end
 
+
   def dashboard
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])

@@ -22,15 +22,6 @@ class ApplicationController < ActionController::Base
     gon.google_calendar_api_key = ENV["GOOGLE_CALENDAR_API_KEY"]
   end
 
-  def establish_client_connection
-    client = Signet::OAuth2::Client.new(client_options)
-    client.update!(session[:authorization])
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.authorization = client
-  end
-
-  
-
   protected
 
     def configure_permitted_parameters

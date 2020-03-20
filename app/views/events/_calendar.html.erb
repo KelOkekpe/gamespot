@@ -2,11 +2,17 @@
 <script>
 function eventCalendar(){
   return $('#calendar').fullCalendar
-  ({googleCalendarApiKey: gon.google_calendar_api_key,
+  ({
+    googleCalendarApiKey: gon.google_calendar_api_key,
     eventSources: getEventSources(),
     eventRender: function(event, element, view) {
       element.find('.fc-content').css({'height':'19px', 'overflow':'scroll'});
-    }
+    },
+    header: {
+      left:'',
+      center:'title',
+      right:'today prev,next'
+    },
     }
   );
 };
