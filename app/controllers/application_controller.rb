@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if user_signed_in?
   end
 
-  # def after_sign_in_path_for(resource)
-  #   client = Signet::OAuth2::Client.new(client_options)
-  #   client.authorization_uri.to_s
-  # end
+  def after_sign_in_path_for(resource)
+    client = Signet::OAuth2::Client.new(client_options)
+    client.authorization_uri.to_s
+  end   #comment this out so it will work in prod
 
   def assign_env_variables
     gon.google_calendar_api_key = ENV["GOOGLE_CALENDAR_API_KEY"]
@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
 
   def client_options
     {
-      client_id: '533153803736-p5fs3rvkgdc2tej5pj9gkibj2b66fd97.apps.googleusercontent.com',
-      client_secret: 'RdVXUGlU2eW52CiwtKqKYEDl',
+      client_id: ENV['GOOGLE_CLIENT_ID'], #hard cvode prod value so it will work in prod
+      client_secret: ENV['GOOGLE_CLIENT_SECRET'], #hard code prod value so it will work in prod
       authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
       token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
       scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
