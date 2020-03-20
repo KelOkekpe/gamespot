@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def redirect
     client = Signet::OAuth2::Client.new(client_options)
-    redirect_to client.authorization_uri.to_s
+    redirect_to 'https://accounts.google.com/o/oauth2/auth'
   end
 
   def callback
