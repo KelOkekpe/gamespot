@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( legend.css )
 Rails.application.config.assets.precompile += %w( pages.js )
+Rails.application.config.assets.precompile += %w( application.js )
