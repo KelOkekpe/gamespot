@@ -25,7 +25,7 @@ module Gamespot
   #   end if File.exists?(env_file)
   # end
 
-  config.assets.enabled = true
-  config.serve_static_assets = true
+  # config.assets.enabled = true
+  # config.serve_static_assets = true
   end
 end

@@ -1,4 +1,4 @@
-$(function() {
+function showModal() {
   const modal_holder_selector = '#modal-holder';
   const modal_selector = '.modal';
 
@@ -28,4 +28,4 @@ $(function() {
 
     return false;
   });
-});
+};
