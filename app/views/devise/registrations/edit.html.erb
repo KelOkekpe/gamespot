@@ -42,7 +42,7 @@
 <%# <%= link_to 'Delete Bookings', destroy_bookings_and_events_path, class: 'btn btn-primary', id:'dashboard-btn', method: :post %> %>
 
 <p id="cancel">Cancel my account</p>
-
+<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
