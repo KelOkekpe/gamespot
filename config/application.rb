@@ -25,5 +25,6 @@ module Gamespot
   #   end if File.exists?(env_file)
   # end
 
+    config.assets.precompile += %w(*.js)
   end
 end
