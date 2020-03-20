@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if user_signed_in?
   end
 
-  def after_sign_in_path_for(resource)
-    client = Signet::OAuth2::Client.new(client_options)
-    client.authorization_uri.to_s
-  end
+  # def after_sign_in_path_for(resource)
+  #   client = Signet::OAuth2::Client.new(client_options)
+  #   client.authorization_uri.to_s
+  # end
 
   def assign_env_variables
     gon.google_calendar_api_key = ENV["GOOGLE_CALENDAR_API_KEY"]
