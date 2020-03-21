@@ -37,4 +37,7 @@ class PagesController < ApplicationController
     retry
   end
 
+  def how_to
+  end
+
 end
